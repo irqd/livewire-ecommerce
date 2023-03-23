@@ -1,10 +1,4 @@
 <div>
-    @if(session()->has('success'))
-        <div wire:poll.3s="hide" class="alert alert-success" role="alert">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <h1>Categories / Add</h1>
 
     <div class="card shadow-sm">
@@ -50,10 +44,14 @@
                     <input class="form-control @error('image') is-invalid  @enderror
                     @if($image) '' @endif"
                     type="file" id="image"
-                    wire:model="image" accept="jpg,jpeg,png">     
+                    wire:model="image" accept="image/*">     
                     @error('image') 
                     <small class="text-danger">{{ $message }}</small>
                     @enderror
+
+                    @if($image)
+                        <img src="{{ $image->temporaryUrl()}}" class="pt-3 img-fluid" width="300"/>
+                    @endif 
                 </div>
                 
                 <div class="col-md-6">

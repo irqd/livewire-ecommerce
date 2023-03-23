@@ -1,8 +1,8 @@
 <div>
     @if(session()->has('success'))
-    <div wire:poll.3s="hide" class="alert alert-success" role="alert">
-        {{ session('success') }}
-    </div>
+        <div wire:poll.3s="hide" class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
     @endif
 
     <h1>Categories</h1>
@@ -14,7 +14,10 @@
                     <i class="fa-solid fa-plus"></i> Add
                 </a>
 
-                <input type="text" class="form-control w-50 shadow-sm" placeholder="Search categories...">
+                <input type="text" 
+                class="form-control w-50 shadow-sm" 
+                placeholder="Search categories..."
+                wire:model.debounce.500ms="search">
             </div>
 
         </div>
@@ -44,15 +47,13 @@
                             </td>
                             <td>
                                 @if ($category->image)
-                                <img src="{{ asset('images/uploads/category/'.$category->image)}}" style="max-height: 248px; max-width:248px;"class="image-fluid">
-                                    
+                                    <img src="{{ asset('storage/' . $category->image) }}" alt="Category Image" class="image-fluid" width="150">
                                 @else
-                                <img src="{{ asset('images/bag.svg')}}" alt="" class="image-fluid">
-                                    
+                                    <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid" width="150">  
                                 @endif
                             </td>
                             <td>
-                                <div class="bg-success rounded px-2 py-1 text-center text-white">
+                                <div class="@if($category->status == '1') bg-success @else bg-danger @endif rounded px-2 py-1 text-center text-white">
                                     <span> {{ $category->status == '1' ? 'Active':'Inactive'}}</span>
                                 </div>
                             </td>
@@ -73,9 +74,15 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                {{ $categories->links()}}
             </div>
 
-
+            @if($categories->isEmpty())
+                <div class="alert alert-danger" role="alert">
+                    No records found...
+                </div>
+            @endif
         </div>
     </div>
 </div>

@@ -53,16 +53,20 @@ class CategoriesAdd extends Component
         $category->meta_name = $this->meta_name;
         $category->meta_keyword = $this->meta_keyword;
         $category->meta_description = $this->meta_description;
-        if(isset($this->image)){
-            $filename = time().'.'.$this->image->getClientOriginalExtension();
-         //   $this->image->storeAs('images/uploads/category/', $filename);
-            $this->image->storeAs('images/uploads/category/', $filename, ['disk' => 'public']);
-           // $image->Storage::move('images/uploads/category/', $filename);
+
+        if($this->image){
+            $filename = $this->image->store('images/uploads/categories', 'public');
             $category->image = $filename;
         }
 
         $category->save();
-        return redirect()->route('admin.categories', ['success' => 'Category Added']);
+        session()->flash('success', 'Category has been created successfully!');
+        return redirect()->route('admin.categories');
+    }
+
+    public function updated($property)
+    {
+        $this->validateOnly($property);
     }
 
     public function render()
