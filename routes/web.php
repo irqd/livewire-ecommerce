@@ -34,7 +34,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/categories', Categories::class)->name('admin.categories');
     Route::get('/categories/add', CategoriesAdd::class)->name('admin.categories.add');
     
+   
     Route::get('/sliders', Sliders::class)->name('admin.sliders');
+
 }); 
 
 //Auth Routes
