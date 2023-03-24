@@ -40,12 +40,13 @@ class CategoriesAdd extends Component
             'image' => 'image|nullable|mimes:jpg,jpeg,png',
         ]);
     }
-    
+
     public function createCategory()
     {
         
         $this->validate();
         $category = new Category;
+        
         $category->name = $this->name;
         $category->slug = Str::slug($this->slug);
         $category->description = $this->description;

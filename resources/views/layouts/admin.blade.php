@@ -41,7 +41,7 @@
                <div class="d-flex justify-content-end">
                   @auth
                   <div>
-                     <a class="btn btn-outline-secondary" href="{{ route('index') }}">
+                     <a class="btn btn-outline-dark" href="{{ route('index') }}">
                         Client
                      </a>
                   </div>
@@ -67,20 +67,20 @@
                   </a>
                </li>
 
-               <li class="{{ (request()->routeIs('admin.categories') || request()->routeIs('admin.categories.add')) ? 'active' : '' }}">
+               <li class="{{ (request()->routeIs('admin.categories') || request()->routeIs('admin.categories.add')) || request()->routeIs('admin.categories.edit') ? 'active' : '' }}">
                   <a href="{{ route('admin.categories') }}" class="text-decoration-none px-3 py-2 d-block">
                      <i class="fa-solid fa-list"></i> Categories
                   </a>
                </li>
 
-               <li class="">
-                  <a href="#" class="text-decoration-none px-3 py-2 d-block">
-                     <i class="fa-solid fa-copyright"></i> Brands
+               <li class="{{ (request()->routeIs('admin.brands') || request()->routeIs('admin.brands.add')) || request()->routeIs('admin.brands.edit') ? 'active' : '' }}">
+                  <a href="{{ route('admin.brands') }}" class="text-decoration-none px-3 py-2 d-block">
+                     <span><i class="fa-solid fa-copyright"></i> Brands</span>
                   </a>
                </li>
 
-               <li class="">
-                  <a href="#" class="text-decoration-none px-3 py-2 d-block">
+               <li class="{{ (request()->routeIs('admin.products')) ? 'active' : '' }}">
+                  <a href="{{ route('admin.products') }}" class="text-decoration-none px-3 py-2 d-block">
                      <i class="fa-solid fa-bag-shopping"></i> Products
                   </a>
                </li>

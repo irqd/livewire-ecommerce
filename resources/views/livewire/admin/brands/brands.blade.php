@@ -5,18 +5,18 @@
         </div>
     @endif
 
-    <h1>Categories</h1>
+    <h1>Brands</h1>
 
     <div class="card shadow-sm">
         <div class="card-header py-3 bg-light">
             <div class="d-flex justify-content-between">
-                <a href="{{ route('admin.categories.add') }}" class="btn btn-outline-success shadow-sm">
+                <a href="{{ route('admin.brands.add') }}" class="btn btn-outline-success shadow-sm">
                     <i class="fa-solid fa-plus"></i> Add
                 </a>
 
                 <input type="text" 
                 class="form-control w-50 shadow-sm" 
-                placeholder="Search categories..."
+                placeholder="Search brands..."
                 wire:model.debounce.500ms="search"
                 :wire:key="concat('admin.categories', $search)">
             </div>
@@ -37,52 +37,49 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $category)
+                        @foreach ($brands as $brand)
                         <tr>
                            
-                            <th scope="row">{{ $category->id }}</th>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->slug }}</td>
+                            <th scope="row">{{ $brand->id }}</th>
+                            <td>{{ $brand->name }}</td>
+                            <td>{{ $brand->slug }}</td>
                             <td class="w-25">
-                                <p>{{ $category->description }}</p>
+                                <p>{{ $brand->description }}</p>
                             </td>
                             <td>
-                                @if ($category->image)
-                                    <img src="{{ asset('storage/' . $category->image) }}" alt="Category Image" class="image-fluid" width="150">
+                                @if ($brand->image)
+                                    <img src="{{ asset('storage/' . $brand->image) }}" alt="Category Image" class="image-fluid" width="150">
                                 @else
                                     <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid" width="150">  
                                 @endif
                             </td>
                             <td>
-                                <div class="@if($category->status == '1') bg-success @else bg-danger @endif rounded px-2 py-1 text-center text-white">
-                                    <span> {{ $category->status == '1' ? 'Active':'Inactive'}}</span>
+                                <div class="@if($brand->status == '1') bg-success @else bg-danger @endif rounded px-2 py-1 text-center text-white">
+                                    <span> {{ $brand->status == '1' ? 'Active':'Inactive'}}</span>
                                 </div>
                             </td>
                             <td>
-                                <livewire:admin.categories.categories-delete :deleteCategory="$category" key="{{  now() }}"/>
+                                <livewire:admin.brands.brands-delete :deleteBrand="$brand" key="{{  now() }}"/>
 
                                 <div class="d-flex justify-content-center gap-1">
-                                    <a href="{{ route('admin.categories.edit', ['slug' => $category->slug, 'id' => $category->id ])}}" class="btn btn-outline-warning shadow-sm">
+                                    <a href="{{ route('admin.brands.edit', ['slug_url' => $brand->slug, 'id' => $brand->id ])}}" class="btn btn-outline-warning shadow-sm">
                                         <i class="fa-solid fa-edit"></i>
                                     </a>
 
-                                    <button type="button" class="btn btn-outline-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#deleteCategory-{{ $category->id }}">
+                                    <button type="button" class="btn btn-outline-danger shadow-sm" data-bs-toggle="modal" data-bs-target="#deleteBrand-{{ $brand->id }}">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </div>
                             </td>
                         </tr>
-
-                        
-                        
                         @endforeach
                     </tbody>
                 </table>
 
-                {{ $categories->links()}}
+                {{ $brands->links()}}
             </div>
 
-            @if($categories->isEmpty())
+            @if($brands->isEmpty())
                 <div class="alert alert-danger" role="alert">
                     No records found...
                 </div>

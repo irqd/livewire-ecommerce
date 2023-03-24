@@ -4,6 +4,10 @@ import '../sass/app.scss';
 
 import * as bootstrap from 'bootstrap';
 
+//tool tips
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 
 $('#opn-cls-btn button').on('click', function() {
    if ($(this).hasClass('open-btn')) {

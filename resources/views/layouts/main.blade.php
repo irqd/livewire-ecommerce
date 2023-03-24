@@ -39,13 +39,13 @@
                </form>
                
                <div class="d-flex justify-content-end">
-                  <a href="#" class="link-secondary btn position-relative">
+                  <a href="#" class="link-dark btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Cart">
                      <i class="fa-solid fa-cart-shopping fs-5"></i>
                      @auth 
-                     <span class="position-absolute top-0 start-100 translate-middle badge 
-                     rounded-pill bg-secondary"> 10 
+                     <span class="position-absolute p-1 top-0 start-100 translate-middle badge 
+                     rounded-pill bg-danger">10 
                         <span class="visually-hidden">
-                           unread messages
+                           on cart
                         </span>
                      </span>
                      @endauth
@@ -53,7 +53,7 @@
 
                   @auth
                   <div>
-                     <a class="link-secondary btn" href="{{ route('account') }}">
+                     <a class="link-dark btn" href="{{ route('account') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Account">
                         <i class="fa-regular fa-user fs-5"></i>
                      </a>
                   </div>
@@ -62,7 +62,7 @@
                   @auth
                      @if(Auth::user()->role == 'admin')
                      <div>
-                        <a class="btn btn-outline-secondary" href="{{ route('admin.dashboard') }}">
+                        <a class="btn btn-outline-dark" href="{{ route('admin.dashboard') }}">
                            Admin
                         </a>
                      </div>
