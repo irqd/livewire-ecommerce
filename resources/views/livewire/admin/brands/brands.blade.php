@@ -43,7 +43,7 @@
                             <th scope="row">{{ $brand->id }}</th>
                             <td>{{ $brand->name }}</td>
                             <td>{{ $brand->slug }}</td>
-                            <td class="w-25">
+                            <td class="w-50">
                                 <p>{{ $brand->description }}</p>
                             </td>
                             <td>
@@ -62,7 +62,7 @@
                                 <livewire:admin.brands.brands-delete :deleteBrand="$brand" key="{{  now() }}"/>
 
                                 <div class="d-flex justify-content-center gap-1">
-                                    <a href="{{ route('admin.brands.edit', ['slug_url' => $brand->slug, 'id' => $brand->id ])}}" class="btn btn-outline-warning shadow-sm">
+                                    <a href="{{ route('admin.brands.edit', ['slug' => $brand->slug, 'id' => $brand->id ])}}" class="btn btn-outline-warning shadow-sm">
                                         <i class="fa-solid fa-edit"></i>
                                     </a>
 

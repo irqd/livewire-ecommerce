@@ -109,7 +109,7 @@
 
                 <div class="col-md-12 pt-3">
                     <button type="submit" class="btn btn-outline-success shadow-sm">
-                        <i class="fa-solid fa-plus"></i> Add
+                        <i class="fa-solid fa-check"></i> Confirm
                     </button>
                     <a href="{{ route('admin.categories') }}" class="btn btn-outline-secondary shadow-sm">
                         Cancel

@@ -12,7 +12,7 @@
           This action cannot be undone.
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-danger shadow-sm" wire:click="deleteCategory({{  $deleteCategory->id }})">Delete</button>
+            <button type="button" class="btn btn-outline-danger shadow-sm" wire:click.prevent="deleteCategory({{  $deleteCategory->id }})">Delete</button>
             <button type="button" class="btn btn-outline-secondary shadow-sm" data-bs-dismiss="modal">Close</button>
         </div>
       </div>

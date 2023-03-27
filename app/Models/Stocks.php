@@ -6,15 +6,17 @@ use App\Models\Products;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ProductImages extends Model
+class Stocks extends Model
 {
     use HasFactory;
-
-    protected $table = 'product_images';
+    protected $table = 'stocks';
 
     protected $fillable = [
-        'product_id',
-        'filename',
+        'name',
+        'quantity',
+        'original_price',
+        'selling_price',
+        'status'
     ];
 
     public function product()

@@ -2,20 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Stocks;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Products extends Model
 {
     use HasFactory;
-
+    
     protected $table = 'products';
 
     protected $fillable = [
         'name',
+        'slug',
         'description',
-        'original_price',
-        'selling_price',
         'status',
         'featured',
         'meta_name',
@@ -25,11 +25,6 @@ class Products extends Model
         'category_id',
     ];
 
-    public function images()
-    {
-        return $this->hasMany(ProductImage::class);
-    }
-
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -38,5 +33,15 @@ class Products extends Model
     public function brand()
     {
         return $this->belongsTo(Brands::class);
+    }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImages::class);
+    }
+
+    public function stocks()
+    {
+        return $this->hasMany(Stocks::class);
     }
 }

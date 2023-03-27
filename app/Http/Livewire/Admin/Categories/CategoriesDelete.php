@@ -23,7 +23,6 @@ class CategoriesDelete extends Component
         
         session()->flash('success', 'Category has been deleted successfully!');
 
-
         return redirect()->route('admin.categories');
     }
 

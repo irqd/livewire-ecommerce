@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-md-8 col-lg-5 p-4">
-            <form class="shadow-sm rounded p-3 p-md-5" wire:submit.prevent="login">
+            <form class="shadow-sm border rounded p-3 p-md-5" wire:submit.prevent="login">
                 @csrf
                 <h1 class="mt-4" align="center"><u>Login</u></h1>
 
@@ -25,7 +25,7 @@
                     <label class="fw-bold">Username or Email</label>
                     <input type="text" id="login" class="form-control @error('usernameOrEmail') is-invalid  @enderror
                     @if($usernameOrEmail) '' @endif"
-                    wire:model.debounce.500ms="usernameOrEmail" autocomplete="off"/>
+                    wire:model.debounce.500ms="usernameOrEmail" autocomplete="off" placeholder="Username or Email"/>
                     @error('usernameOrEmail') 
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
@@ -35,7 +35,7 @@
                     <label class="fw-bold">Password</label>
                     <input type="{{ $showPassword ? 'text' : 'password' }}" id="password_form" class="form-control @error('password') is-invalid  @enderror
                     @if($usernameOrEmail) '' @endif"
-                    wire:model.debounce.500ms="password" />
+                    wire:model.debounce.500ms="password" placeholder="Password"/>
                     @error('password') 
                         <small class="text-danger">{{ $message }}</small> 
                     @enderror

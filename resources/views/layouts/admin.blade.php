@@ -75,11 +75,11 @@
 
                <li class="{{ (request()->routeIs('admin.brands') || request()->routeIs('admin.brands.add')) || request()->routeIs('admin.brands.edit') ? 'active' : '' }}">
                   <a href="{{ route('admin.brands') }}" class="text-decoration-none px-3 py-2 d-block">
-                     <span><i class="fa-solid fa-copyright"></i> Brands</span>
+                     <i class="fa-solid fa-copyright"></i> Brands
                   </a>
                </li>
 
-               <li class="{{ (request()->routeIs('admin.products')) ? 'active' : '' }}">
+               <li class="{{ (request()->routeIs('admin.products') || request()->routeIs('admin.products.add')) ? 'active' : '' }}">
                   <a href="{{ route('admin.products') }}" class="text-decoration-none px-3 py-2 d-block">
                      <i class="fa-solid fa-bag-shopping"></i> Products
                   </a>
@@ -96,7 +96,7 @@
 
             <ul class="list-unstyled px-2">
 
-               <li class="{{ (request()->routeIs('admin.sliders')) ? 'active' : '' }}">
+               <li class="{{ (request()->routeIs('admin.sliders') || request()->routeIs('admin.sliders.add') || request()->routeIs('admin.sliders.edit')) ? 'active' : '' }}">
                   <a href="{{ route('admin.sliders') }}" class="text-decoration-none px-3 py-2 d-block">
                      <i class="fa-solid fa-sliders"></i> Ad Sliders
                   </a>
@@ -110,7 +110,7 @@
 
                <li class="">
                   <a href="#" class="text-decoration-none px-3 py-2 d-block">
-                     <i class="fa-solid fa-bell"></i> Notification
+                     <i class="fa-solid fa-bell"></i> Notifications
                   </a>
                </li>
             </ul>

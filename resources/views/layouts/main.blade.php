@@ -70,10 +70,11 @@
                   @endauth
 
                   @guest
-                  <a class="link-secondary btn fs-6" href="{{ route('login') }}">
+                  <a class="link-secondary py-2 px-1 fs-6 text-decoration-none auth" href="{{ route('login') }}">
                      Login
                   </a>
-                  <a class="link-secondary btn fs-6" href="{{ route('register') }}">
+                  <span class="text-secondary py-2 px-1 fs-6">|</span>
+                  <a class="link-secondary py-2 px-1 fs-6 text-decoration-none auth" href="{{ route('register') }}">
                      Signup
                   </a>
                   @endguest

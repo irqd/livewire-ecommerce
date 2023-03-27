@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Brands;
+namespace App\Http\Livewire\Admin\Sliders;
 
-use App\Models\Brands as ModelsBrands;
+use App\Models\Sliders as ModelsSliders;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-
-
-class Brands extends Component
+class Sliders extends Component
 {
     use WithPagination;
 
@@ -18,30 +16,22 @@ class Brands extends Component
 
     public function render()
     {
-        $brands = ModelsBrands::query();
+        $sliders = ModelsSliders::query();
 
         if($this->search) 
         {
-            $brands->where('name', 'like', "%{$this->search}%")
-            ->orWhere('slug', 'like', "%{$this->search}%")
+            $sliders->where('title', 'like', "%{$this->search}%")
             ->orWhere('status', 'like', "%{$this->search}%")
             ->orWhere('description', 'like', "%{$this->search}%");
         }
 
-        return view('livewire.admin.brands.brands',
+        return view('livewire.admin.sliders.sliders',
         [
-            'brands' => $brands->latest()->paginate(5)
+            'sliders' => $sliders->latest()->paginate(5)
         ]
         )->extends('layouts.admin');
     }
 
-    public function updated($property)
-    {
-        if ($property == 'search')
-        {
-            $this->resetPage();
-        }
-    }
 
     public function hide()
     {   
@@ -53,5 +43,4 @@ class Brands extends Component
             session()->forget('success');
         }
     }
-
 }

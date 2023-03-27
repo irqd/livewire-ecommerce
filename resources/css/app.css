@@ -5,6 +5,15 @@
    }
  }
  
+.auth:hover {
+  text-decoration: underline !important;
+  color: #212529 !important;
+}
+
+.carousel-slider {
+  height: 400px;
+}
+
 .sidebar {
   position: fixed;
   width: 230px;
@@ -41,9 +50,10 @@
 
 .sidebar li a:hover{
   background: #212529;
-  transition: all 0.4s;
   padding-left: 35px !important;
   border-radius: 8px;
+  transition-property: padding-left;
+  transition-duration: 0.4s;
   color: #eee;
 }
 
@@ -80,7 +90,6 @@
 #side_nav {
   min-width: 250px;
   max-width: 250px;
-  transition: all 0.4s;
 }
 
 hr .h-color {
@@ -91,7 +100,7 @@ hr .h-color {
 @media(max-width: 767px) {
   #side_nav {
     margin-left: -250px;
-    
+    transition: all 0.4s;
     position: fixed;
     min-height: 100vh;
     z-index: 1;
@@ -99,6 +108,10 @@ hr .h-color {
 
   .content {
     padding-left: 0;
+  }
+
+  .carousel-slider {
+    height: 200px;
   }
 }
 

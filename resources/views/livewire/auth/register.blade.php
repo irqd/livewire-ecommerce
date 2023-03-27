@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-md-8 col-lg-5 p-4">
-            <form class="shadow-sm rounded p-3 p-md-5" wire:submit.prevent="register">
+            <form class="shadow-sm border rounded p-3 p-md-5" wire:submit.prevent="register">
                 @csrf
                 <h1 class="mt-4" align="center"><u>Register</u></h1>
                 <div class="form-outline mb-4 mt-4">
@@ -19,7 +19,7 @@
                     <input type="text" id="username" 
                     class="form-control @error('username') is-invalid  @enderror
                     @if($username) is-valid @endif" 
-                    wire:model.debounce.500ms="username" autocomplete="off"/>
+                    wire:model.debounce.500ms="username" autocomplete="off" placeholder="Username"/>
                     
                     @error('username') 
                         <small class="text-danger">{{ $message }}</small> 
@@ -31,7 +31,7 @@
                     <input type="email" id="email" 
                     class="form-control @error('email') is-invalid  @enderror
                     @if($email) is-valid @endif" 
-                    wire:model.debounce.500ms="email" autocomplete="off"/>
+                    wire:model.debounce.500ms="email" autocomplete="off" placeholder="Email"/>
                     @error('email') 
                         <small class="text-danger">{{ $message }}</small> 
                     @enderror
@@ -42,7 +42,7 @@
                     <input type="{{ $showPassword ? 'text' : 'password' }}" id="password" 
                     class="form-control @error('password') is-invalid  @enderror
                     @if($password) is-valid @endif" 
-                    wire:model.debounce.500ms="password"/>
+                    wire:model.debounce.500ms="password" placeholder="Password"/>
                     @error('password') 
                         <small class="text-danger">{{ $message }}</small> 
                     @enderror
@@ -53,7 +53,7 @@
                     <input type="{{ $showPassword ? 'text' : 'password' }}" id="confirm_password" 
                     class="form-control @error('confirm_password') is-invalid @enderror 
                     @if($password != '' && $password == $confirm_password) is-valid @endif" 
-                    wire:model.debounce.500ms="confirm_password"/>
+                    wire:model.debounce.500ms="confirm_password" placeholder="Confirm Password"/>
                     @error('confirm_password') 
                         <small class="text-danger">{{ $message }}</small> 
                     @enderror
@@ -72,7 +72,7 @@
 
                 <!-- Submit button -->
                 <div align="center">
-                    <button type="submit" class="btn btn-outline-primary mb-4 @" >
+                    <button type="submit" class="btn btn-outline-primary mb-4 shadow-sm" >
                         Sign Up
                     </button>
                 </div>

@@ -43,7 +43,7 @@
                             <th scope="row">{{ $category->id }}</th>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->slug }}</td>
-                            <td class="w-25">
+                            <td class="w-50">
                                 <p>{{ $category->description }}</p>
                             </td>
                             <td>
