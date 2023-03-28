@@ -11,6 +11,13 @@ class Stocks extends Model
     use HasFactory;
     protected $table = 'stocks';
 
+    public $status;
+
+    public function __construct()
+    {
+        $this->status = '1'; // Set default value of status property to 1
+    }
+
     protected $fillable = [
         'name',
         'quantity',

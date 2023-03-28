@@ -10,6 +10,12 @@
   color: #212529 !important;
 }
 
+.fixed-size {
+  height: 300px;
+  width: 100%;
+}
+
+
 .carousel-slider {
   height: 400px;
 }
@@ -113,6 +119,7 @@ hr .h-color {
   .carousel-slider {
     height: 200px;
   }
+
 }
 
 .logout {

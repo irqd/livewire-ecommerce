@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Products;
 
 use Livewire\Component;
 use App\Models\Products;
+use App\Models\ProductImages;
 use Illuminate\Support\Facades\File;
 
 class ProductsDelete extends Component
@@ -12,10 +13,16 @@ class ProductsDelete extends Component
 
     public function delete($id)
     {
+        $this->middleware('admin');
         $product = Products::find($id);
 
-        if(File::exists(public_path('storage/'.$product->images->filename))){
-            File::delete(public_path('storage/'.$product->image));
+        
+        if ($product->images) {
+            foreach ($product->images as $image) {
+                if(File::exists(public_path('storage/'.$image->filename))){
+                    File::delete(public_path('storage/'.$image->image));
+                }
+            }
         }
         
         $product->delete();

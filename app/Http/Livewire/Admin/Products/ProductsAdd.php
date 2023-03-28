@@ -3,46 +3,28 @@
 namespace App\Http\Livewire\Admin\Products;
 
 use App\Models\Brands;
+use App\Models\Stocks;
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\Products;
+use App\Models\ProductImages;
 use Livewire\WithFileUploads;
 
 class ProductsAdd extends Component
 {
-    use WithFileUploads;
     public $tab = 'products';
-    public $stock = 0;
+    public $validationErrors = [];
+    protected $listeners = [
+        'displayErrors',
+        'displayDanger',
+        'displaySuccess',
+    ];
 
-    // Selections
-    public $categories;
-    public $brands;
-
-    // Product Info
-    public $category;
-    public $brand;
-    public $name;
-    public $slug;
-    public $description;
-    public $status = '1';
-    public $featured = '0';
-    public $meta_name;
-    public $meta_keyword;
-    public $meta_description;
-
-    
-    public function addStock()
+    public function createProduct()
     {
-        $this->stock++;
-    }
-
-    public function removeStock()
-    {
-        if ($this->stock === 0){
-            session()->flash('danger', 'Stock cannot be less than 0');
-            return;
-        }
-
-        $this->stock--;
+        $this->emitTo('admin.products.products-add-tabs.products-add-tab1','validateProduct');
+        $this->emitTo('admin.products.products-add-tabs.products-add-tab2','validateStocks');
+        $this->emitTo('admin.products.products-add-tabs.products-add-tab3','validateImages');
     }
 
     public function hide()
@@ -55,32 +37,59 @@ class ProductsAdd extends Component
             session()->forget('success');
         }
     }
-
-    public function mount()
+ 
+    public function displayDanger($message)
     {
-        $this->categories = Category::all();
-        $this->brands = Brands::all();
+        session()->flash('danger', $message);
     }
 
+    public function displaySuccess($message)
+    {
+        session()->flash('success', $message);
+    }
+    
     public function render()
     {
         return view('livewire.admin.products.products-add')->extends('layouts.admin');
     }
 }
 
-
-// public $stocks;
+    // $product = new Products();
+    // $product->name = $this->name;
+    // $product->slug = $this->slug;
+    // $product->description = $this->description;
+    // $product->status = $this->status;
+    // $product->featured = $this->featured;
+    // $product->meta_name = $this->meta_name;
+    // $product->meta_keyword = $this->meta_keyword;
+    // $product->meta_description = $this->meta_description;
+    // $product->brand_id = $this->brand;
+    // $product->category_id = $this->category;
     
-// public function addStock()
-// {
-//     $this->stocks[] = new Stocks();
-// }
+    // $product->save();
+    // if ($this->images) {
+    //     foreach ($this->images as $image) {
+    //         //$filename = time() . '_' . $image->getClientOriginalName();
+    //         //$path = $image->storeAs('public/products', $filename);
+    //         $filename = $image->store('images/uploads/products/'.$product->id.'/', 'public');
+            
+    //         $productImage = new ProductImages([
+    //             'filename' => $filename
+    //         ]);
 
-// public function saveStocks()
-// {
-//     $data = [];
-//     foreach ($this->stocks as $stock) {
-//         $data[] = $stock->toArray();
-//     }
-//     Stocks::insert($data);
-// }
+    //         $product->images()->save($productImage);
+    //     }
+    // }
+
+    // foreach ($this->stocks as $stock) {
+    //     if (!empty($stock['name'])) {
+    //         $newStock = new Stocks();
+    //         $newStock->name = $stock['name'];
+    //         $newStock->quantity = $stock['quantity'];
+    //         $newStock->original_price = $stock['original_price'];
+    //         $newStock->selling_price = $stock['selling_price'];
+    //         $newStock->status = $stock['status'] ?? 1;
+
+    //         $product->stocks()->save($newStock);
+    //     }
+    // }
