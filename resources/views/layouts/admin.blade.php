@@ -27,6 +27,7 @@
                   <a class="navbar-brand fs-3" href="/">
                      <span class="bg-dark text-white rounded shadow px-2 me-2">B&D</span>
                      <span>Ecommerce</span>
+                     <span class="fw-bold">Admin</span>
                   </a>
                </div>
                
@@ -67,19 +68,19 @@
                   </a>
                </li>
 
-               <li class="{{ (request()->routeIs('admin.categories') || request()->routeIs('admin.categories.add')) || request()->routeIs('admin.categories.edit') ? 'active' : '' }}">
+               <li class="{{ (request()->routeIs('admin.categories') || request()->routeIs('admin.categories.add') || request()->routeIs('admin.categories.edit')) ? 'active' : '' }}">
                   <a href="{{ route('admin.categories') }}" class="text-decoration-none px-3 py-2 d-block">
                      <i class="fa-solid fa-list"></i> Categories
                   </a>
                </li>
 
-               <li class="{{ (request()->routeIs('admin.brands') || request()->routeIs('admin.brands.add')) || request()->routeIs('admin.brands.edit') ? 'active' : '' }}">
+               <li class="{{ (request()->routeIs('admin.brands') || request()->routeIs('admin.brands.add') || request()->routeIs('admin.brands.edit')) ? 'active' : '' }}">
                   <a href="{{ route('admin.brands') }}" class="text-decoration-none px-3 py-2 d-block">
                      <i class="fa-solid fa-copyright"></i> Brands
                   </a>
                </li>
 
-               <li class="{{ (request()->routeIs('admin.products') || request()->routeIs('admin.products.add')) ? 'active' : '' }}">
+               <li class="{{ (request()->routeIs('admin.products') || request()->routeIs('admin.products.add') || request()->routeIs('admin.products.edit')) ? 'active' : '' }}">
                   <a href="{{ route('admin.products') }}" class="text-decoration-none px-3 py-2 d-block">
                      <i class="fa-solid fa-bag-shopping"></i> Products
                   </a>

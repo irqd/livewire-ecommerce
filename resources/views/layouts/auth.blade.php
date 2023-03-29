@@ -25,12 +25,12 @@
             <div class="container">
                <div class="">
                   <a class="navbar-brand fs-3" href="/">
-                     {{ config('app.name', 'Laravel') }}
+                     <span class="bg-dark text-white rounded shadow px-2 me-2">B&D</span>
+                     <span>Ecommerce</span>
+                     <span class="text-capitalize fw-bold">
+                        {{ request()->route()->getName() }}
+                     </span>
                   </a>
-
-                  <span class="fs-3 text-capitalize">
-                     {{ request()->route()->getName() }}
-                  </span>
                </div>
             </div>
          </nav>

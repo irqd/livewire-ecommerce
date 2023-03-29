@@ -28,10 +28,10 @@
                     <thead class="table-dark text-center">
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Name</th>
                             <th scope="col">Slug</th>
                             <th scope="col">Description</th>
-                            <th scope="col">Image</th>
                             <th scope="col">Status</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -41,17 +41,17 @@
                         <tr>
                            
                             <th scope="row">{{ $brand->id }}</th>
+                            <td>
+                                @if ($brand->image)
+                                    <img src="{{ asset('storage/' . $brand->image) }}" alt="Category Image" class="image-fluid fixed-size-sm">
+                                @else
+                                    <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid fixed-size-sm">  
+                                @endif
+                            </td>
                             <td>{{ $brand->name }}</td>
                             <td>{{ $brand->slug }}</td>
                             <td class="w-50">
                                 <p>{{ $brand->description }}</p>
-                            </td>
-                            <td>
-                                @if ($brand->image)
-                                    <img src="{{ asset('storage/' . $brand->image) }}" alt="Category Image" class="image-fluid" width="150">
-                                @else
-                                    <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid" width="150">  
-                                @endif
                             </td>
                             <td>
                                 <div class="@if($brand->status == '1') bg-success @else bg-danger @endif rounded px-2 py-1 text-center text-white">

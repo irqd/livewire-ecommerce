@@ -64,8 +64,8 @@
                 </div>
                 
                 <div class="col-md-12 pt-3">
-                    <button type="submit" class="btn btn-outline-success shadow-sm">
-                        <i class="fa-solid fa-plus"></i> Add
+                    <button type="submit" class="btn btn-outline-warning shadow-sm">
+                        <i class="fa-solid fa-edit"></i> Edit
                     </button>
                     <a href="{{ route('admin.brands') }}" class="btn btn-outline-secondary shadow-sm">
                         Cancel

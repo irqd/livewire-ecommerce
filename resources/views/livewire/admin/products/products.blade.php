@@ -34,11 +34,11 @@
                    <thead class="table-dark text-center">
                        <tr>
                            <th scope="col">ID</th>
-                           <th scope="col">Image</th>
+                           <th scope="col">Images</th>
                            <th scope="col">Name</th>
+                           <th scope="col">Slug</th>
                            <th scope="col">Description</th>
-                           <th scope="col">Original price</th>
-                           <th scope="col">Selling Price</th>
+                           <th scope="col">Total Stocks</th>
                            <th scope="col">is Featured?</th>
                            <th scope="col">Brand</th>
                            <th scope="col">Category</th>
@@ -47,7 +47,7 @@
                        </tr>
                    </thead>
                    <tbody>
-                    {{-- @foreach ($products as $product)
+                    @foreach ($products as $product)
                     <tr>
                            
                         <th scope="row">{{ $product->id }}</th>
@@ -57,7 +57,7 @@
                                 <div class="carousel-inner">
                                 @foreach ($product->images as $image)
                                   <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                    <img src="{{ asset('storage/' . $image->filename) }}" alt="Product Image" class="image-fluid" width="150">
+                                    <img src="{{ asset('storage/' . $image->filename) }}" alt="Product Image" class="image-fluid fixed-size-sm">
                                   </div>
                                 @endforeach
                                 </div>
@@ -71,18 +71,19 @@
                                 </button>
                               </div>
                             @else
-                                <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid" width="150">  
+                                <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid fixed-size-sm">  
                             @endif
                         </td>
                         <td>{{ $product->name }}</td>
+                        <td>{{ $product->slug }}</td>
                         <td class="w-50">
                             <p>{{ $product->description }}</p>
                         </td>
-                        <td>{{ $product->original_price }}</td>
-                        <td>{{ $product->selling_price }}</td>
+                        <td>{{ $product->stocks->sum('quantity') }}</td>
+                       
                         <td>
                             <div class="@if($product->featured == '1') bg-success @else bg-danger @endif rounded px-2 py-1 text-center text-white">
-                                <span> {{ $product->featured == '1' ? 'YES':'NO'}}</span>
+                                <span> {{ $product->featured == '1' ? 'Yes':'No'}}</span>
                             </div>
                         </td>
                         
@@ -94,10 +95,10 @@
                             </div>
                         </td>
                         <td>
-                            <livewire:admin.brands.products-delete :deleteProduct="$product" key="{{  now() }}"/>
+                            <livewire:admin.products.products-delete :deleteProduct="$product" key="{{  now() }}"/>
 
                                 <div class="d-flex justify-content-center gap-1">
-                                    <a href="{{ route('admin.products.edit', ['id' => $product->id ])}}" class="btn btn-outline-warning shadow-sm">
+                                    <a href="{{ route('admin.products.edit', ['slug' => $product->slug, 'id' => $product->id ])}}" class="btn btn-outline-warning shadow-sm">
                                         <i class="fa-solid fa-edit"></i>
                                     </a>
 
@@ -107,7 +108,7 @@
                             </div>
                         </td>
                     </tr>
-                    @endforeach --}}
+                    @endforeach
                    </tbody>
                </table>
 

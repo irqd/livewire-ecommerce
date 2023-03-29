@@ -7,7 +7,7 @@
         </div>
         <div class="modal-body">
           Are you sure you want to <span class="text-danger fw-bold">delete</span> the product 
-          <span class="fw-bold">{{ $deleteProduct->title }}</span>? 
+          <span class="fw-bold">{{ $deleteProduct->name }}</span>? 
           This action cannot be undone.
         </div>
         <div class="modal-footer">

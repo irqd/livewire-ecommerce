@@ -6,25 +6,24 @@ use Livewire\Component;
 use App\Models\Products;
 use App\Models\ProductImages;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProductsDelete extends Component
 {
-    public $product;
+    public $deleteProduct;
 
     public function delete($id)
     {
-        $this->middleware('admin');
+       
         $product = Products::find($id);
 
-        
         if ($product->images) {
-            foreach ($product->images as $image) {
-                if(File::exists(public_path('storage/'.$image->filename))){
-                    File::delete(public_path('storage/'.$image->image));
-                }
-            }
+            
+            // Delete the directory itself
+            File::deleteDirectory(public_path('storage/images/uploads/products/'.$product->id));
         }
         
+        //dd('not called');
         $product->delete();
         
         session()->flash('success', 'Product has been deleted successfully!');

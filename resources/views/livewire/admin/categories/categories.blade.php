@@ -28,10 +28,10 @@
                     <thead class="table-dark text-center">
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Name</th>
                             <th scope="col">Slug</th>
                             <th scope="col">Description</th>
-                            <th scope="col">Image</th>
                             <th scope="col">Status</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -41,18 +41,20 @@
                         <tr>
                            
                             <th scope="row">{{ $category->id }}</th>
+                            <td>
+                                @if ($category->image)
+                                    <img src="{{ asset('storage/' . $category->image) }}" alt="Category Image" class="image-fluid fixed-size-sm">
+                                @else
+                                    <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid fixed-size-sm">  
+                                @endif
+                            </td>
                             <td>{{ $category->name }}</td>
+                            
                             <td>{{ $category->slug }}</td>
                             <td class="w-50">
                                 <p>{{ $category->description }}</p>
                             </td>
-                            <td>
-                                @if ($category->image)
-                                    <img src="{{ asset('storage/' . $category->image) }}" alt="Category Image" class="image-fluid" width="150">
-                                @else
-                                    <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid" width="150">  
-                                @endif
-                            </td>
+                            
                             <td>
                                 <div class="@if($category->status == '1') bg-success @else bg-danger @endif rounded px-2 py-1 text-center text-white">
                                     <span> {{ $category->status == '1' ? 'Active':'Inactive'}}</span>

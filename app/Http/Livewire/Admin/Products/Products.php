@@ -16,7 +16,6 @@ class Products extends Component
     protected $queryString = ['search'];
     protected $paginationTheme = 'bootstrap';
 
-    
     public function hide()
     {   
         if (session()->has('error')) {
@@ -35,8 +34,6 @@ class Products extends Component
         {
             $products->where('name', 'like', "%{$this->search}%")
             ->orWhere('description', 'like', "%{$this->search}%")
-            ->orWhere('original_price', 'like', "%{$this->search}%")
-            ->orWhere('selling_price', 'like', "%{$this->search}%")
             ->orWhere('status', 'like', "%{$this->search}%")
             ->orWhere('featured', 'like', "%{($this->search == 'YES') ? '1' : '0'}%")
             ->orwhereRelation('category', 'name', 'like', "%{$this->search}%")
