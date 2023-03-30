@@ -1,5 +1,8 @@
 <div>
-    <h1>Categories / Edit</h1>
+    <h1>
+        <a href="{{ route('admin.categories') }}" class="link-dark breadcrumbs">Categories</a> /
+        <a href="" class="breadcrumbs link-secondary">Edit</a>
+    </h1>
 
     <div class="card shadow-sm">
         <div class="card-header py-3 bg-dark">
@@ -49,8 +52,11 @@
                     <small class="text-danger">{{ $message }}</small>
                     @enderror
                     
-                    @if ($image_edit) 
+                    @if ($image_edit)
+                        @if(!$image_edit->isPreviewable())
+                        @else
                         <img src="{{ $image_edit->temporaryUrl()}}" alt="Category Image" class="pt-3 img-fluid" width="300"/>
+                        @endif
                     @elseif ($category->image)
                         <img src="{{ asset('storage/' .$category->image) }}" alt="Category Image" class="pt-3 image-fluid" width="300" >
                     @else 

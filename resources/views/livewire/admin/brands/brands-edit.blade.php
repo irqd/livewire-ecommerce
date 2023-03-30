@@ -1,5 +1,8 @@
 <div>
-    <h1>Brands / Edit</h1>
+    <h1>
+        <a href="{{ route('admin.brands') }}" class="link-dark breadcrumbs">Brands</a> /
+        <a href="" class="breadcrumbs link-secondary">Edit</a>
+    </h1>
 
     <div class="card shadow-sm">
         <div class="card-header py-3 bg-dark">
@@ -41,8 +44,11 @@
                     <small class="text-danger">{{ $message }}</small>
                     @enderror
 
-                    @if ($image) 
+                    @if($image)
+                        @if(!$image->isPreviewable())
+                        @else 
                         <img src="{{ $image->temporaryUrl()}}" alt="Brand Image" class="pt-3 img-fluid" width="300"/>
+                        @endif
                     @elseif ($brand->image)
                         <img src="{{ asset('storage/' .$brand->image) }}" alt="Brand Image" class="pt-3 image-fluid" width="300" >
                     @else 

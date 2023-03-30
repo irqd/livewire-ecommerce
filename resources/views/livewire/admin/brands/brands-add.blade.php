@@ -1,5 +1,8 @@
 <div>
-    <h1>Brands / Add</h1>
+    <h1>
+        <a href="{{ route('admin.brands') }}" class="link-dark breadcrumbs">Brands</a> /
+        <a href="" class="breadcrumbs link-secondary">Add</a>
+    </h1>
 
     <div class="card shadow-sm">
         <div class="card-header py-3 bg-dark">
@@ -52,7 +55,10 @@
                     @enderror
 
                     @if($image)
-                        <img src="{{ $image->temporaryUrl()}}" class="pt-3 img-fluid" width="300"/>
+                        @if(!$image->isPreviewable())
+                        @else
+                        <img src="{{ $image->temporaryUrl()}}" alt="Brand Image" class="pt-3 img-fluid" width="300"/>
+                        @endif
                     @endif 
                 </div>
                 

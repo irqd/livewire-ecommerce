@@ -1,5 +1,8 @@
 <div>
-    <h1>Products / Edit</h1>
+    <h1>
+        <a href="{{ route('admin.products') }}" class="link-dark breadcrumbs">Products</a> /
+        <a href="" class="breadcrumbs link-secondary">Edit</a>
+    </h1>
 
     <div class="card shadow-sm">
         <div class="card-header py-3 bg-dark">
@@ -7,6 +10,7 @@
                 Edit information for {{ $product->name }}
             </h3>
         </div>
+        
         <div class="card-body bg-light">
             @if(session()->has('success'))
                 <div wire:poll.3s="hide" class="alert alert-success" role="alert" :wire:key="concat('admin.products-add', hide)">
@@ -268,20 +272,20 @@
                     </div>
 
                     <div class="tab-pane fade @if($tab == 'images') show active @endif" id="nav-images" role="tabpanel" aria-labelledby="nav-images-tab" tabindex="0">
-                        {{-- <div class="row g-3 d-flex justify-content-center pt-3">
+                        <div class="row g-3 d-flex justify-content-center pt-3">
                             <div class="col-md-6">
-                                <label for="images" class="form-label fw-bold">Product Images</label>
-                                <input class="form-control @error('images') is-invalid  @enderror
-                                @if($images) '' @endif"
-                                type="file" id="images"
-                                wire:model="images" accept="image/*" multiple> 
+                                <label for="images_edit" class="form-label fw-bold">Product Images</label>
+                                <input class="form-control @error('images_edit') is-invalid  @enderror
+                                @if($images_edit) '' @endif"
+                                type="file" id="images_edit"
+                                wire:model="images_edit" accept="image/*" multiple> 
                         
-                                @error('images') 
+                                @error('images_edit') 
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                         
-                            @if(!$images)
+                            @if(!$images && !$images_edit)
                                 <div class="col-md-12">
                                     <div class="alert alert-danger">
                                         No image available
@@ -289,21 +293,45 @@
                                 </div>
                             @endif
                         
-                            @if($images)
-                                <div class="row d-flex justify-content-center">
-                                    @foreach($images as $index => $image)
-                                        <div class="col-md-3 fixed-size text-center">
-                                            <img src="{{ $image->temporaryUrl()}}" class="pt-3 pb-1 img-fluid w-100 h-75"/>
-                                            <span>
-                                                <button class="btn btn-danger btn-sm shadow-sm" wire:click.prevent="removeImage({{ $index }})">
+                            @if($images || $images_edit)
+                            <div class="row d-flex justify-content-center gap-3 pt-3">
+                                @foreach($images_edit as $index => $image)
+                                    @if(!$image->isPreviewable())
+                                        <div class="col-md-3 card shadow-sm bg-light text-center border border-danger">
+                                            <img src="{{ asset( 'images/wrong.svg') }}" class="pt-3 img-fluid"/>
+                                            <small> This type of file is not supported </small>
+                                            <div class="py-2 px-auto">
+                                                <button class="btn btn-danger btn-sm shadow-sm" wire:click.prevent="removeImageEdit({{ $index }})">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
-                                            </span>
+                                            </div>
                                         </div>
-                                    @endforeach
-                                </div>
+                                    @else
+                                        <div class="col-md-3 card shadow-sm bg-light text-center">
+                                            <img src="{{ $image->temporaryUrl() }}" class="pt-3 img-fluid"/>
+                                            <div class="py-2 px-auto">
+                                                <button class="btn btn-danger btn-sm shadow-sm" wire:click.prevent="removeImageEdit({{ $index }})">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    
+                                @endforeach
+
+                                @foreach($images as $index => $image)
+                                    <div class="col-md-3 card shadow-sm bg-light text-center">
+                                        <img src="{{ asset('storage/'.$image['filename']) }}" class="pt-3 img-fluid"/>
+                                        <div class="py-2 px-auto">
+                                            <button class="btn btn-danger btn-sm shadow-sm" wire:click.prevent="removeImage({{ $index }})">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                             @endif
-                        </div>   --}}
+                        </div>  
                     </div>
                 </div>
 

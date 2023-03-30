@@ -32,10 +32,14 @@ class Products extends Component
         $products = ProductModel::query();
         if($this->search) 
         {
+            $feature = strtoupper($this->search) == 'YES' ? 1 : 0;
+            $status = strtoupper($this->search) == 'ACTIVE' ? 1 : 0;
+
             $products->where('name', 'like', "%{$this->search}%")
+            ->orWhere('slug', 'like', "%{$this->search}%")
             ->orWhere('description', 'like', "%{$this->search}%")
-            ->orWhere('status', 'like', "%{$this->search}%")
-            ->orWhere('featured', 'like', "%{($this->search == 'YES') ? '1' : '0'}%")
+            ->orWhere('status', 'like', "%{$status}%")
+            ->orWhere('featured', 'like', "%{$feature}%")
             ->orwhereRelation('category', 'name', 'like', "%{$this->search}%")
             ->orwhereRelation('brand', 'name', 'like', "%{$this->search}%");
         }

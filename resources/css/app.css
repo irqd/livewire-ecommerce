@@ -10,6 +10,14 @@
   color: #212529 !important;
 }
 
+.breadcrumbs {
+  text-decoration: none !important;
+}
+
+.breadcrumbs:hover {
+  text-decoration: underline !important;
+}
+
 .fixed-size {
   height: 300px;
   width: 100%;
@@ -24,14 +32,6 @@
   height: 400px;
 }
 
-.sidebar {
-  position: fixed;
-  width: 230px;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
 
 .sidebar {
   position: fixed;

@@ -7,15 +7,22 @@ use App\Models\Stocks;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Products;
+use App\Models\ProductImages;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 class ProductsEdit extends Component
 {
+    use WithFileUploads;
     public $tab = 'products';
 
     public $product;
     public $stocks = [];
     public $stocks_copy = [];
     public $images = [];
+    public $images_edit = [];
+    public $images_copy = [];
 
     // Selections
     public $categories;
@@ -53,9 +60,8 @@ class ProductsEdit extends Component
         'stocks.*.original_price' => 'required|numeric',
         'stocks.*.selling_price' => 'required|numeric',
 
-        // // * Images
-        // 'images' => 'required|array',
-        // 'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        // * Images
+        'images_edit.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ];
 
     protected $messages = [
@@ -98,6 +104,15 @@ class ProductsEdit extends Component
 
         // Get copy of stock for existing stocks
         $this->stocks_copy = $this->stocks;
+
+        // Get Images
+        foreach($this->product->images as $image)
+        {
+            $this->images[] = $image;
+        }
+
+        // Get copy of images for existing images
+        $this->images_copy = $this->images;
     }
 
     public function editProduct()
@@ -115,7 +130,10 @@ class ProductsEdit extends Component
         $this->product->meta_name = $this->meta_name;
         $this->product->meta_keyword = $this->meta_keyword;
         $this->product->meta_description = $this->meta_description;
-          
+        
+        $this->product->update();
+        // Update Stocks
+
         // Get the difference between $stocks and $stocks_copy
         $differences = array_udiff($this->stocks_copy, $this->stocks, function ($a, $b) {
             return strcmp(serialize($a), serialize($b));
@@ -149,33 +167,41 @@ class ProductsEdit extends Component
             );
         }
         
-
-
         
-        // foreach ($this->stocks as $stock) {
+        // Update Images
 
-        //     $newStock = new Stocks();
-        //     $newStock->name = $stock['name'];
-        //     $newStock->quantity = $stock['quantity'];
-        //     $newStock->original_price = $stock['original_price'];
-        //     $newStock->selling_price = $stock['selling_price'];
-        //     $newStock->status = $stock['status'];
+        // Get the difference between $images and $images_copy
+        $imageDifferences = array_udiff($this->images_copy, $this->images, function ($a, $b) {
+            return strcmp(serialize($a), serialize($b));
+        });
 
-        //     $product->stocks()->save($newStock);
-        // }
+        // Delete images that differ from images and images_copy array
+        if ($imageDifferences){
+            foreach($imageDifferences as $diff)
+            {
+                if(array_key_exists('id', $diff))
+                {
+                    $this->product->images()->find($diff['id'])->delete();
 
-        // // * Images
-        // foreach ($this->images as $image) {
-        //     $filename = $image->store('images/uploads/products/'.$product->id, 'public');
+                    if(File::exists(public_path('storage/'.$diff['filename'])))
+                    {
+                        File::delete(public_path('storage/'.$diff['filename']));
+                    }
+                }
+            }
+        }
+ 
+        // Save new images from images_edit array
+        foreach ($this->images_edit as $image) {
             
-        //     $productImage = new ProductImages([
-        //         'filename' => $filename
-        //     ]);
+            $filename = $image->store('images/uploads/products/'.$this->product->id, 'public');
             
-        //     $product->images()->save($productImage);
-        // }
+            $this->product->images()->create([
+                'filename' => $filename,
+            ]);
+        }
 
-        session()->flash('success', 'Product added successfully.');
+        session()->flash('success', 'Product edited successfully.');
         return redirect()->route('admin.products');
     }
 
@@ -204,9 +230,18 @@ class ProductsEdit extends Component
         session()->flash('success', 'Image removed successfully.');
     }
 
+    public function removeImageEdit($index)
+    {
+        if (isset($this->images_edit[$index])) {
+            unset($this->images_edit[$index]);
+        }
+
+        session()->flash('success', 'Image removed successfully.');
+    }
+
     public function updated($property)
     {
-        $this->validateOnly($property);        
+        $this->validateOnly($property);   
     }
 
     public function hide()

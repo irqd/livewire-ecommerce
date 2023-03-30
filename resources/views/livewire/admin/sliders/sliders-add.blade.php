@@ -1,5 +1,8 @@
 <div>
-    <h1>Sliders / Add</h1>
+    <h1>
+        <a href="{{ route('admin.sliders') }}" class="link-dark breadcrumbs">Sliders</a> /
+        <a href="" class="breadcrumbs link-secondary">Add</a>
+    </h1>
 
     <div class="card shadow-sm">
         <div class="card-header py-3 bg-dark">

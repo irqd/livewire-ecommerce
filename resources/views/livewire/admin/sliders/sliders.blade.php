@@ -5,7 +5,9 @@
         </div>
     @endif
 
-    <h1>Ad Sliders</h1>
+    <h1>
+        <a href="{{ route('admin.sliders') }}" class="link-dark breadcrumbs">Sliders</a>
+    </h1>
 
     <div class="card shadow-sm">
         <div class="card-header py-3 bg-light">

@@ -1,5 +1,8 @@
 <div>
-    <h1>Products / Add</h1>
+    <h1>
+        <a href="{{ route('admin.products') }}" class="link-dark breadcrumbs">Products</a> /
+        <a href="" class="breadcrumbs link-secondary">Add</a>
+    </h1>
 
     <div class="card shadow-sm">
         <div class="card-header py-3 bg-dark">
@@ -289,16 +292,28 @@
                             @endif
                         
                             @if($images)
-                                <div class="row d-flex justify-content-center">
+                                <div class="row d-flex justify-content-center gap-3 pt-3">
                                     @foreach($images as $index => $image)
-                                        <div class="col-md-3 fixed-size text-center">
-                                            <img src="{{ $image->temporaryUrl()}}" class="pt-3 pb-1 img-fluid w-100 h-75"/>
-                                            <span>
+                                        @if(!$image->isPreviewable())
+                                        <div class="col-md-3 card shadow-sm bg-light text-center border border-danger">
+                                            <img src="{{ asset( 'images/wrong.svg') }}" class="pt-3 img-fluid"/>
+                                            <small> This type of file is not supported </small>
+                                            <div class="py-2 px-auto">
                                                 <button class="btn btn-danger btn-sm shadow-sm" wire:click.prevent="removeImage({{ $index }})">
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
-                                            </span>
+                                            </div>
                                         </div>
+                                        @else
+                                        <div class="col-md-3 card shadow-sm bg-light text-center">
+                                            <img src="{{ $image->temporaryUrl()}}" class="pt-3 img-fluid"/>
+                                            <div class="py-2 px-auto">
+                                                <button class="btn btn-danger btn-sm shadow-sm" wire:click.prevent="removeImage({{ $index }})">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        @endif
                                     @endforeach
                                 </div>
                             @endif

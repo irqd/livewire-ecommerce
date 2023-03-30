@@ -11,8 +11,10 @@
             <div class="carousel-item @if($loop->index == 0) active @endif" data-bs-interval="3000">
               <img src="{{ asset('storage/'.$slider->image)}}" class="d-block w-100 carousel-slider" alt="{{ $slider->title }}">
               <div class="carousel-caption d-none d-md-block">
-                <h5>{{ $slider->title }}</h5>
-                <p>{{ $slider->description }}</p>
+                <div class="text-start">
+                  <h5>{{ $slider->title }}</h5>
+                  <p>{{ $slider->description }}</p>
+                </div>
               </div>
             </div>
           @endif

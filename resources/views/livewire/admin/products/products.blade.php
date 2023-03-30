@@ -11,7 +11,9 @@
        </div>
    @endif
 
-   <h1>Products</h1>
+   <h1>
+        <a href="{{ route('admin.products') }}" class="link-dark breadcrumbs">Products</a>
+   </h1>
 
    <div class="card shadow-sm">
        <div class="card-header py-3 bg-light">
@@ -52,23 +54,26 @@
                            
                         <th scope="row">{{ $product->id }}</th>
                         <td>
-                            @if ($product->images)
+                            @if ($product->images->count() > 0)
                             <div id="productImageCarousel" class="carousel slide" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                 @foreach ($product->images as $image)
-                                  <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                  <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="3000">
                                     <img src="{{ asset('storage/' . $image->filename) }}" alt="Product Image" class="image-fluid fixed-size-sm">
                                   </div>
                                 @endforeach
                                 </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#productImageCarousel" data-bs-slide="prev">
-                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                  <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#productImageCarousel" data-bs-slide="next">
-                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                  <span class="visually-hidden">Next</span>
-                                </button>
+                                
+                                @if($product->images->count() > 1)
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#productImageCarousel" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#productImageCarousel" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                    </button>
+                                @endif
                               </div>
                             @else
                                 <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid fixed-size-sm">  

@@ -32,7 +32,7 @@
                
                <form id="search" class="d-flex w-50" role="search">
                   <input class="form-control" type="search" 
-                  placeholder="Search" aria-label="Search">
+                  placeholder="Search products..." aria-label="Search">
                   <button class="btn d-none d-md-block" type="submit">
                      <i class="fa-solid fa-magnifying-glass"></i>
                   </button>
@@ -89,7 +89,7 @@
       
       <!-- Boostrap Js -->
       @vite(['resources/js/app.js'])
-
+      
       <!-- Livewire Scripts -->
       @livewireScripts
    </body>
