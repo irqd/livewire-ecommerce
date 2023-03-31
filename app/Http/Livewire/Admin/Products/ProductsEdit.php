@@ -73,7 +73,7 @@ class ProductsEdit extends Component
 
         'stocks.*.name.string' => 'The name field must be a string for all stocks.',
         'stocks.*.status.string' => 'The status field must be a string for all stocks.',
-        'stocks.*.quantity.numeric' => 'The quantity field must be numeric for all stocks.',
+        'stocks.*.quantity.numeric' => '{{ The  }}quantity field must be numeric for all stocks.',
         'stocks.*.original_price.numeric' => 'The original price field must be numeric for all stocks.',
         'stocks.*.selling_price.numeric' => 'The selling price field must be numeric for all stocks.',
     ];

@@ -18,6 +18,11 @@
   text-decoration: underline !important;
 }
 
+.fixed-size-company-logo {
+  height: 411px;
+  width: 100%;
+}
+
 .fixed-size {
   height: 300px;
   width: 100%;
@@ -124,6 +129,10 @@ hr .h-color {
     height: 200px;
   }
 
+  .fixed-size-company-logo {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .logout {

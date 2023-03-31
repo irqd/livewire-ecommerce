@@ -10,6 +10,7 @@ use App\Http\Livewire\Admin\Sliders\Sliders;
 use App\Http\Livewire\Admin\Brands\BrandsAdd;
 use App\Http\Livewire\Admin\Brands\BrandsEdit;
 use App\Http\Livewire\Admin\Products\Products;
+use App\Http\Livewire\Admin\Settings\Settings;
 use App\Http\Livewire\Admin\Sliders\SlidersAdd;
 use App\Http\Livewire\Admin\Dashboard\Dashboard;
 use App\Http\Livewire\Admin\Sliders\SlidersEdit;
@@ -69,6 +70,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/', Sliders::class)->name('admin.sliders');
         Route::get('/add', SlidersAdd::class)->name('admin.sliders.add');
         Route::get('/edit/{id}', SlidersEdit::class)->name('admin.sliders.edit');
+    });
+
+    // Settings Routes
+    Route::prefix('settings')->group(function () {
+        Route::get('/', Settings::class)->name('admin.settings');
     });
 });
 

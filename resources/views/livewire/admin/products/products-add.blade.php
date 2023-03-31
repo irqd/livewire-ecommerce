@@ -266,7 +266,6 @@
                                 @endif
                             </div>
                         </div>
-                        
                     </div>
 
                     <div class="tab-pane fade @if($tab == 'images') show active @endif" id="nav-images" role="tabpanel" aria-labelledby="nav-images-tab" tabindex="0">
