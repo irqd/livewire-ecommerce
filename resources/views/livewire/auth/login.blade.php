@@ -27,6 +27,10 @@
                     </div>
                 @endif
 
+                @if (session()->has('attemptsLeft'))
+                    <div class="alert alert-warning">{{ session('attemptsLeft') }} login attempts left</div>
+                @endif
+
                 <div class="form-outline mb-4 mt-4">
                     <label class="fw-bold">Username or Email</label>
                     <input type="text" id="login" class="form-control @error('usernameOrEmail') is-invalid  @enderror
