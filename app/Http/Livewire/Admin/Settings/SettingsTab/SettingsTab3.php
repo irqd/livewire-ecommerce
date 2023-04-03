@@ -33,6 +33,11 @@ class SettingsTab3 extends Component
         session()->flash('success', 'Image updated successfully.');
     }
 
+    public function removeImage()
+    {
+        session()->flash('success', 'Image remove successfully.');
+    }
+
     public function changePassword()
     {
         $this->validate([
@@ -62,6 +67,10 @@ class SettingsTab3 extends Component
             $this->user->password = Hash::make($this->new_password);
             $this->user->save();
 
+            Auth::logout();
+            session()->flash('success', 'Password updated successfully. Please login again.');
+            
+            return redirect()->route('login');
             //Logout the user
         } else {
             session()->flash('danger', 'Passwords do not match.');
