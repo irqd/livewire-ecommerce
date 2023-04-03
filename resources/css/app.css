@@ -28,6 +28,16 @@
   width: 100%;
 }
 
+.fixed-size-md {
+  height: 200px;
+  width: 100%;
+}
+
+.fixed-size-responsive {
+  height: 100% !important;
+  width: 100% !important;
+}
+
 .fixed-size-sm {
   height: 100px;
   width: 100px;
@@ -131,6 +141,11 @@ hr .h-color {
 
   .fixed-size-company-logo {
     height: 100%;
+    width: 100%;
+  }
+
+  .fixed-size-md {
+    height: 260px;
     width: 100%;
   }
 }

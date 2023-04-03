@@ -21,5 +21,27 @@ $('#opn-cls-btn button').on('click', function() {
      $('i.fa-xmark').removeClass('fa-xmark').addClass('fa-bars-staggered');
    }
  });
+
+// Close add document modal after inputs are validated
+window.addEventListener('closeAddDocumentModal', event => {
+  $('#addDocumentModal').modal('hide');
+});
+
+// Clears the file input field for add document modal
+window.addEventListener('clearInputFile', event => {
+    document.getElementById("document").value = "";
+});
+
+
+// Close delete document modal 
+window.addEventListener('closeDeleteDocumentModal', event => {
+  $('#deleteDocument-'+ event.detail.id).modal('hide');
+});
+
+// Close edit document modal 
+window.addEventListener('closeEditDocumentModal', event => {
+  $('#editDocument-'+ event.detail.id).modal('hide');
+});
+
  
 

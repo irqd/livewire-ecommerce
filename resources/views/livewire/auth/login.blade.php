@@ -15,6 +15,12 @@
                 @csrf
                 <h1 class="mt-4" align="center"><u>Login</u></h1>
 
+                @if (session()->has('success'))
+                    <div wire:poll.3s="hide" class="alert alert-success" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
                 @if (session()->has('danger'))
                     <div wire:poll.3s="hide" class="alert alert-danger" role="alert">
                         {{ session('danger') }}
