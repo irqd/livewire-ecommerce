@@ -41,7 +41,7 @@
                                             <li class="dropdown-item">
                                                 @csrf
                                                 <!-- Add a hidden file input element -->
-                                                <input type="file" id="file-input" style="display: none;" wire:model="image">
+                                                <input type="file" id="file-input" style="display: none;" wire:model="image" accept="image/*">
                                                 <!-- Use JavaScript to open the file upload dialog -->
                                                 <a onclick="event.preventDefault(); document.getElementById('file-input').click();" style="cursor: pointer;">Upload Image</a>
                                             </li>

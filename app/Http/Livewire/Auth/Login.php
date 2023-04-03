@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Auth;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
 
 class Login extends Component
 {
@@ -17,7 +19,7 @@ class Login extends Component
         'password' => 'required|string',
     ];
     
-    public function login()
+    public function login(Request $request)
     {
         $this->validate();
 
@@ -29,6 +31,7 @@ class Login extends Component
         ];
 
         if (Auth::attempt($credentials, $this->remember)) {
+            $request->session()->regenerate();
             if (Auth::user()->role == 'admin') { // Check if the user has an admin role
                 $username = Auth::user()->username;
                 return redirect('/admin/dashboard')->with('success', 'Welcome back, '.$username); // Redirect to the admin panel

@@ -49,21 +49,30 @@
 
                 <div class="row mb-4">
                    <div class="col d-flex">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" wire:model="showPassword"/>
-                        <label class="form-check-label" for="showPassword">
-                            Show password 
-                        </label>
-                      </div>
-                   </div>
-
-                   <div class="col">
-                      <a href="#!">Forgot password?</a>
-                   </div>
+                       <div class="form-check">
+                           <input class="form-check-input" type="checkbox" id="showPassword" wire:model="showPassword"/>
+                           <label class="form-check-label" for="showPassword">
+                               Show password 
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="col d-flex justify-content-end">
+                        <a href="#!">Forgot password?</a>
+                    </div>
                 </div>
-
+                
                 <!-- Submit button -->
                 <div align="center">
+                    
+                    <div class="text-center mb-1">
+                        <input class="form-check-input" type="checkbox" id="rememberMe" wire:model="remember"/>
+                        <label class="form-check-label" for="rememberMe">
+                            Remember me? 
+                        </label>
+                  
+                    </div>
+                    
                     <button type="submit" class="btn btn-outline-primary mb-4 shadow-sm" >
                         Sign in
                     </button>
