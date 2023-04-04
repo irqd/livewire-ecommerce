@@ -62,8 +62,7 @@ class Login extends Component
         RateLimiter::hit($throttleKey,$this->decaySeconds);
         $attemptsLeft = RateLimiter::retriesLeft($throttleKey, $this->maxAttempts);
         session()->flash('attemptsLeft', $attemptsLeft);
-
-        session()->flash('danger', 'These credentials do not match our records.');
+        session()->flash('danger', "These credentials do not match our records.");
     }
 
     public function hide()

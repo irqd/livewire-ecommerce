@@ -19,13 +19,16 @@ class SettingsTab2EditModal extends Component
 
     protected $rules = [
         'name' => 'required|string',
-        'document' => 'nullable|mimes:pdf,doc,docx,xml|mimetypes:application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'document' => 'nullable|mimes:pdf,doc,docx,xml',
     ];
 
     public function mount()
     {
         $this->company_documents = CompanyDocuments::find($this->editDocument->id);
         $this->name = $this->company_documents->name;
+        
+        //$this->document = pathinfo($this->company_documents->filename, PATHINFO_BASENAME);
+        
     }
     
     public function editCompanyDocuments()

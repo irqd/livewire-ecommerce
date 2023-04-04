@@ -73,15 +73,6 @@
                 </div>
 
                 <div class="card-body">
-                    @if($current_password && $new_password && $confirm_password)
-                        <div class="alert alert-info shadow-sm">
-                            <small>
-                                <span class="text-light fw-bold bg-danger p-1 rounded">Notice</span>
-                                <span>Changing passwords will log you out.</span>
-                                <span class="fw-bold">Please login again to test out new password</span>
-                            </small>
-                        </div>  
-                    @endif
                     <form wire:submit.prevent="changePassword">
                         <div class="row gap-3">
                             <div class="col-12">

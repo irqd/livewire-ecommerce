@@ -1,10 +1,10 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 use App\Http\Livewire\Auth\Login;
-use App\Http\Livewire\Main\Index;
 use App\Http\Livewire\Auth\Register;
-use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Profile\Account;
+
 use App\Http\Livewire\Admin\Brands\Brands;
 use App\Http\Livewire\Admin\Sliders\Sliders;
 use App\Http\Livewire\Admin\Brands\BrandsAdd;
@@ -15,10 +15,14 @@ use App\Http\Livewire\Admin\Sliders\SlidersAdd;
 use App\Http\Livewire\Admin\Dashboard\Dashboard;
 use App\Http\Livewire\Admin\Sliders\SlidersEdit;
 use App\Http\Livewire\Admin\Products\ProductsAdd;
-use App\Http\Livewire\Admin\Categories\Categories;
 use App\Http\Livewire\Admin\Products\ProductsEdit;
+use App\Http\Livewire\Admin\Categories\Categories;
 use App\Http\Livewire\Admin\Categories\CategoriesAdd;
 use App\Http\Livewire\Admin\Categories\CategoriesEdit;
+
+use App\Http\Livewire\Main\Landing\Index;
+use App\Http\Livewire\Main\Categories\Categories as MainCategories;
+use App\Http\Livewire\Main\Categories\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,4 +86,12 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 Route::prefix('auth')->middleware(['guest'])->group(function () {
     Route::get('/login', Login::class)->name('login');
     Route::get('/register', Register::class)->name('register');
+});
+
+//? Contents
+Route::prefix('main')->group(function () {
+    Route::prefix('categories')->group(function () {
+        Route::get('/', MainCategories::class)->name('main.categories'); //view all categories
+        Route::get('/{id}/{slug}', Category::class)->name('main.category'); //view selected category
+    });
 });

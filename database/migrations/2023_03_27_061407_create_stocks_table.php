@@ -16,8 +16,10 @@ return new class extends Migration
             $table->foreignId('products_id')->references('id')->on('products')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('name');
             $table->integer('quantity');
-            $table->float('original_price');
-            $table->float('selling_price');
+            //$table->float('original_price');
+            //$table->float('selling_price');
+            $table->decimal('original_price', 12, 2);
+            $table->decimal('selling_price', 12, 2);
             $table->string('status')->default('1')->comment('0 for Inactive, 1 for Active');
             $table->timestamps();
         });

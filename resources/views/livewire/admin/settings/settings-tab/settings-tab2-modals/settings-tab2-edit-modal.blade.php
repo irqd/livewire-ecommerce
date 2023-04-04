@@ -19,14 +19,14 @@
                   @enderror
               </div>
               <div class="col-12">
-                  <label for="document" class="form-label fw-bold">Document</label>
-                  <input type="file" class="form-control @error('document') is-invalid @enderror"
-                    id="document" placeholder="File"
-                    wire:model.debounce.500ms="document"
-                    accept=".pdf,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-                  @error('document') 
-                  <small class="text-danger">{{ $message }}</small>
-                  @enderror
+                <label for="document" class="form-label fw-bold">Upload File</label>
+                <input type="file" class="form-control @error('document') is-invalid @enderror"
+                id="document" placeholder="File"
+                wire:model.debounce.500ms="document"
+                accept=".pdf,.doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                @error('document') 
+                <small class="text-danger">{{ $message }}</small>
+                @enderror
               </div>
             </div>
           </div>
@@ -38,3 +38,4 @@
      </div>
   </div>
 </div>
+

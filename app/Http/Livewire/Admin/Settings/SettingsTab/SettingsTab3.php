@@ -34,8 +34,6 @@ class SettingsTab3 extends Component
         contain at least one number and one special character.'
     ];
 
-
-
     public function mount()
     {
         $this->user = Auth::user();
@@ -58,7 +56,6 @@ class SettingsTab3 extends Component
             session()->flash('success', 'Image updated successfully.');
         } else {
             $this->addError('image', 'Image is not valid');
-            ddd($this->getErrorBag());
         }
 
     }

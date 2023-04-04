@@ -42,6 +42,18 @@
                                     <div class="d-flex justify-content-between">
                                         <div>
                                             <h1 class="m-0 fs-5 fw-bold pt-1">
+                                                @php
+                                                    $file_extension = pathinfo($document->filename, PATHINFO_EXTENSION); 
+                                                    $isWordFile = ($file_extension == "doc" || $file_extension == "docx") ? true : false;
+                                                    $isPDFFile = ($file_extension == "pdf") ? true : false;
+                                                @endphp
+                                                <i @class([
+                                                    'fa-solid',
+                                                    'fa-file-word text-primary' => $isWordFile,
+                                                    'fa-file-pdf text-danger' => $isPDFFile,
+                                                    'fa-file text-secondary' => !$isWordFile and !$isPDFFile,
+                                                ])></i>
+
                                                 {{ $document->name }}
                                             </h1>
                                         </div>
