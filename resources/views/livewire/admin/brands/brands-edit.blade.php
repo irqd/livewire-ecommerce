@@ -11,7 +11,7 @@
         <div class="card-body bg-light">
             <form class="row g-3 justify-content" wire:submit.prevent="editBrand">
                 @csrf
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="name" class="form-label fw-bold">Brand Name</label>
                     <input type="text" class="form-control @error('name') is-invalid  @enderror
                     @if($name) '' @endif"
@@ -22,7 +22,7 @@
                     @enderror
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="slug" class="form-label fw-bold">Slug</label>
                     <input type="text" class="form-control @error('slug') is-invalid  @enderror
                     @if($slug) '' @endif"
@@ -33,6 +33,22 @@
                     @enderror
                 </div>
                 
+                <div class="col-md-4">
+                    <label for="category" class="form-label fw-bold" >
+                        Category
+                    </label>
+            
+                    <select name="category_id" id="category_id" class="form-select @error('category_id') is-invalid @enderror" aria-placeholder="Select Category" wire:model.debounce.500ms="category_id">
+                        <option>Select Category</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+            
+                    @error('category_id') 
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
                 
                 <div class="col-md-6">
                     <label for="image" class="form-label fw-bold">Image</label>

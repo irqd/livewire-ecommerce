@@ -17,7 +17,7 @@ class SettingsTab2AddModal extends Component
 
     protected $rules = [
         'name' => 'required|string',
-        'document' => 'required|mimes:pdf,doc,docx,xml|mimetypes:application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'document' => 'required|mimes:pdf,doc,docx,xml',
     ];
 
     public function mount()

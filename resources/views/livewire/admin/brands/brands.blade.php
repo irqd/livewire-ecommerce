@@ -33,6 +33,7 @@
                             <th scope="col">Image</th>
                             <th scope="col">Name</th>
                             <th scope="col">Slug</th>
+                            <th scope="col">Category</th>
                             <th scope="col">Description</th>
                             <th scope="col">Status</th>
                             <th scope="col">Actions</th>
@@ -52,6 +53,7 @@
                             </td>
                             <td>{{ $brand->name }}</td>
                             <td>{{ $brand->slug }}</td>
+                            <td>{{ $brand->category->name }}</td>
                             <td class="w-50">
                                 <p>{{ $brand->description }}</p>
                             </td>

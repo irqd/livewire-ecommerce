@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Brands;
 
 use App\Models\Brands;
 use Livewire\Component;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 
@@ -17,6 +18,9 @@ class BrandsAdd extends Component
     public $description;
     public $image;
     public $status = '1';
+    public $category_id;
+
+    public $categories;
 
     protected $rules = [
         'name' => 'required|string',
@@ -24,6 +28,7 @@ class BrandsAdd extends Component
         'description' => 'nullable|string',
         'image' => 'image|nullable|mimes:jpg,jpeg,png',
         'status' => 'required|string',
+        'category_id' => 'required|numeric'
     ];
 
     public function createBrand()
@@ -35,6 +40,7 @@ class BrandsAdd extends Component
         $brand->slug = Str::slug($this->slug);
         $brand->description = $this->description;
         $brand->status = $this->status;
+        $brand->category_id = $this->category_id;
 
         if($this->image){
             $filename = $this->image->store('images/uploads/brands', 'public');
@@ -44,6 +50,11 @@ class BrandsAdd extends Component
         $brand->save();
         session()->flash('success', 'Brand has been created successfully!');
         return redirect()->route('admin.brands');
+    }
+
+    public function mount()
+    {
+        $this->categories = Category::latest()->get();
     }
 
     public function updated($property)

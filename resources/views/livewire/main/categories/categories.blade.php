@@ -13,8 +13,8 @@
         </div>
     </div>
 
-    <div class="py-5">
-        <div class="row gap-4 d-flex justify-content-center" id="all_category">
+    <div class="py-4">
+        <div class="row px-2" id="all_category">
             @if($categories->isEmpty())
                 <div class="col-12">
                     <div class="alert alert-danger" role="alert">
@@ -25,7 +25,7 @@
             @endif
 
             @foreach($categories as $index => $category)
-                <div class="col-12 col-lg-2">
+                <div class="col-6 col-md-4 col-lg-2 p-1">
                     <div class="card rounded shadow-sm">
                         <a href="{{ route('main.category', ['slug' => $category->slug, 'id' => $category->id ])}}">
                             <div class="img-wrapper-category rounded" id="category_image">
@@ -33,8 +33,8 @@
                             </div>
     
                             <div class="card-img-overlay">
-                                <div class="overlay text-center p-1">
-                                    <small class="bg-dark text-light p-1 rounded-5">
+                                <div class="overlay text-center bg-dark rounded-5">
+                                    <small class="text-light">
                                         {{  $category->name }}
                                     </small>
                                 </div>        

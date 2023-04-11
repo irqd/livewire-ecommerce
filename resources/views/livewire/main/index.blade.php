@@ -5,7 +5,7 @@
             <button type="button" data-bs-target="#carouselSliders" data-bs-slide-to="{{ $loop->index }}" class="@if($loop->index == 0) active @endif" aria-current="@if($loop->index == 0) true @endif" aria-label="Slide {{ $loop->iteration }}"></button>
           @endforeach
         </div>
-        <div class="carousel-inner">
+        <div class="carousel-inner d-flex">
           @foreach ($sliders as $slider)
           @if($slider->status == '1')
             <div class="carousel-item @if($loop->index == 0) active @endif" data-bs-interval="3000">

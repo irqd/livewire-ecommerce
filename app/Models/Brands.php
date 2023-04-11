@@ -16,11 +16,17 @@ class Brands extends Model
         'slug',
         'description',
         'image',
-        'status'
+        'status',
+        'category_id'
     ];
 
     public function products()
     {
         return $this->hasMany(Products::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

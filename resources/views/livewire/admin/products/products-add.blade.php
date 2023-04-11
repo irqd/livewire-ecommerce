@@ -66,9 +66,9 @@
                                 <label for="category" class="form-label fw-bold" >
                                     Category
                                 </label>
-                        
-                                <select name="category" id="category" class="form-select @error('category') is-invalid @enderror" aria-placeholder="Select Category" wire:model.debounce.500ms="category">
-                                    <option>Select Category</option>
+                                
+                                <select name="category" id="category" class="form-select @error('category') is-invalid @enderror" aria-placeholder="Select Category" wire:model="category" wire:change="matchBrands">
+                                    <option value="-1" selected>Select Category</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
@@ -83,9 +83,13 @@
                                 <label for="brand" class="form-label fw-bold" >
                                     Brand
                                 </label>
-                        
-                                <select name="brand" id="brand" class="form-select @error('brand') is-invalid @enderror" aria-placeholder="Select Status" wire:model.debounce.500ms="brand">
-                                    <option>Select Brand</option>
+                                
+                                <div wire:loading wire:target="category">
+                                    Loading...
+                                </div>
+                                
+                                <select name="brand" id="brand" class="form-select @error('brand') is-invalid @enderror" aria-placeholder="Select Brand" wire:model="brand">
+                                    <option value="-1" selected>Select Brand</option>
                                     @foreach ($brands as $brand)
                                         <option value="{{ $brand->id }}">{{ $brand->name }}</option>
                                     @endforeach

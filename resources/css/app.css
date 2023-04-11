@@ -283,3 +283,12 @@ hr .h-color {
     height: 90vw !important;
   }
 }
+
+/* Product Listing */
+#product .card:hover {
+  position: relative;
+  bottom: 5px;
+  border: 1px solid #212529 !important;
+  transition-property: border !important;
+  transition-duration: 0.4s !important;
+}

@@ -19,8 +19,8 @@ class ProductsAdd extends Component
     public $images = [];
 
     // Selections
-    public $categories;
-    public $brands;
+    public $categories = [];
+    public $brands = [];
 
     // Product Info
     public $name;
@@ -40,7 +40,7 @@ class ProductsAdd extends Component
         'slug' => 'required|string',
         'description' => 'nullable|string',
         'category' => 'required|string',
-        'brand' => 'required|string',
+        'brand' => 'required|string|not_in:-1',
         'status' => 'required|string',
         'featured' => 'required|string',
         'meta_name' => 'required|string',
@@ -122,8 +122,7 @@ class ProductsAdd extends Component
 
     public function mount()
     {
-        $this->categories = Category::all();
-        $this->brands = Brands::all();
+        $this->categories = Category::latest()->get();
         $this->stocks[] = new Stocks();  
     }
 
@@ -149,6 +148,12 @@ class ProductsAdd extends Component
         }
 
         session()->flash('success', 'Image removed successfully.');
+    }
+
+    public function matchBrands()
+    {
+        $this->brands = Brands::where('category_id', $this->category)->latest()->get();
+        $this->brand = -1;     
     }
 
     public function updated($property)

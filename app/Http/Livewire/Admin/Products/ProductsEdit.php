@@ -45,8 +45,8 @@ class ProductsEdit extends Component
         'name' => 'required|string',
         'slug' => 'required|string',
         'description' => 'nullable|string',
-        'category' => 'required',
-        'brand' => 'required',
+        'category' => 'required|not_in:-1',
+        'brand' => 'required|not_in:-1',
         'status' => 'required',
         'featured' => 'required',
         'meta_name' => 'required|string',
@@ -81,7 +81,7 @@ class ProductsEdit extends Component
     public function mount($id)
     {
         $this->categories = Category::all();
-        $this->brands = Brands::all();
+        
         
         // Get Product
         $this->product = Products::find($id);
@@ -96,6 +96,8 @@ class ProductsEdit extends Component
         $this->meta_description = $this->product->meta_description;
         $this->brand = $this->product->brand->id;
         $this->category = $this->product->category->id;
+
+        $this->brands = Brands::where('category_id', $this->product->category->id)->get();
 
         // Get Stocks
         foreach ($this->product->stocks as $stock) {
@@ -237,6 +239,12 @@ class ProductsEdit extends Component
         }
 
         session()->flash('success', 'Image removed successfully.');
+    }
+
+    public function matchBrands()
+    {
+        $this->brands = Brands::where('category_id', $this->category)->latest()->get();
+        $this->brand = -1;    
     }
 
     public function updated($property)

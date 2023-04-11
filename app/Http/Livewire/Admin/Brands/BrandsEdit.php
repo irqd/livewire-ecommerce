@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Brands;
 
 use App\Models\Brands;
 use Livewire\Component;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\File;
@@ -18,6 +19,10 @@ class BrandsEdit extends Component
     public $slug;
     public $image;
     public $status;
+    public $category_id;
+
+    public $categories;
+
 
     protected $rules = [
         'name' => 'required|string',
@@ -32,6 +37,8 @@ class BrandsEdit extends Component
         $this->name = $this->brand->name;
         $this->slug = $this->brand->slug;
         $this->status= $this->brand->status;
+
+        $this->categories = Category::latest()->get();
        
     }
 
@@ -51,8 +58,8 @@ class BrandsEdit extends Component
             [
                 'name' => $this->name,
                 'slug' => Str::slug($this->slug),
-                
-                'status' => $this->status
+                'status' => $this->status,
+                'category_id' => $this->category_id,
                 
             ]
         );
