@@ -107,7 +107,7 @@
                      
                      <div class="d-flex justify-content-between">
                         <div class="">
-                           <input type="number" class="form-control">
+                           <input type="number" wire:model="min_price" class="form-control">
                            {{-- <label for="name" class="form-label fw-bold">Brand </label>
                            <input type="text" class="form-control @error('name') is-invalid  @enderror
                            @if($name) '' @endif"
@@ -125,7 +125,7 @@
                         </div>
 
                         <div class="">
-                           <input type="number" class="form-control">
+                           <input type="number"  wire:model="max_price" class="form-control">
                         </div>
                      </div>
 

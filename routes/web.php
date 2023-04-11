@@ -23,6 +23,7 @@ use App\Http\Livewire\Admin\Categories\CategoriesEdit;
 use App\Http\Livewire\Main\Landing\Index;
 use App\Http\Livewire\Main\Categories\Categories as MainCategories;
 use App\Http\Livewire\Main\Categories\Category;
+use App\Http\Livewire\Main\Products\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,5 +94,9 @@ Route::prefix('main')->group(function () {
     Route::prefix('categories')->group(function () {
         Route::get('/', MainCategories::class)->name('main.categories'); //view all categories
         Route::get('/{id}/{slug}', Category::class)->name('main.category'); //view selected category
+    });
+    Route::prefix('product')->group(function () {
+       // Route::get('/', MainCategories::class)->name('main.categories'); //view all categories
+        Route::get('/{id}/{slug}', Product::class)->name('main.product'); //view selected product
     });
 });
