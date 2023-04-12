@@ -1,5 +1,5 @@
 <section class="content" class="d-flex">
-    <div class="sidebar bg-light border shadow-sm" id="side_nav">
+    <div class="sidebar bg-light border shadow-sm" id="side_nav" wire:ignore>
         <div class="px-2 pt-5 pt-md-1">
             <h1 class="px-2 fw-bold fs-3">
                 Filters
@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <div class="d-md-none d-block" id="opn-cls-btn">
+    <div class="d-md-none d-block" id="opn-cls-btn" wire:ignore>
        <button class="btn px-1 py-0 open-btn">
        <i class="fa-solid fa-bars-staggered"></i>
        </button>
