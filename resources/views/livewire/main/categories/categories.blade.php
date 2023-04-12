@@ -1,8 +1,9 @@
 <div class="container-fluid container-lg">
     <div class="pt-5">
-        <div class="fw-bold fs-3 pt-2">
-            All Categories
-        </div>
+        <h1 class="fw-bold fs-3 pt-2">
+            <a href="{{ route('index') }}" class="link-dark breadcrumbs">Home</a> /
+            <a href="" class="breadcrumbs link-secondary">All Categories</a>
+        </h1>
 
         <div class="w-100">
             <input type="text" 

@@ -51,7 +51,7 @@
                     @enderror
                 </div>
 
-                <div class="row mb-4">
+                <div class="row mb-1">
                    <div class="col d-flex">
                        <div class="form-check">
                            <input class="form-check-input" type="checkbox" id="showPassword" wire:model="showPassword"/>
@@ -68,13 +68,11 @@
                 
                 <!-- Submit button -->
                 <div align="center">
-                    
-                    <div class="text-center mb-1">
+                    <div class="text-start mb-1">
                         <input class="form-check-input" type="checkbox" id="rememberMe" wire:model="remember"/>
                         <label class="form-check-label" for="rememberMe">
                             Remember me? 
                         </label>
-                  
                     </div>
                     
                     <button type="submit" class="btn btn-outline-primary mb-4 shadow-sm" >

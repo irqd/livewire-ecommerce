@@ -61,10 +61,11 @@
 
     <div class="px-4 py-5">
        <div>
-          <h1>
-             <a href="{{ route('main.categories') }}" class="link-dark breadcrumbs">Categories</a> /
-             <a href="" class="breadcrumbs link-secondary">{{ $category->name }}</a>
-          </h1>
+            <h1>
+                    <a href="{{ route('index') }}" class="link-dark breadcrumbs">Home</a> /
+                    <a href="{{ route('main.categories') }}" class="link-dark breadcrumbs">Categories</a> /
+                    <a href="" class="breadcrumbs link-secondary">{{ $category->name }}</a>
+            </h1>
           <div class="row px-3 pt-3" >
             @if($product_list->count() == 0)
                 <div class="col-12">
