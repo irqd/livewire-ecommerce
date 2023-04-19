@@ -7,16 +7,16 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/sass/app.scss',
                 'resources/js/app.js',
             ],
             refresh: true,
         }),
     ],
-
+    
     resolve: {
         alias: {
             '~bootstrap': path.resolve(__dirname, 'node_modules/bootstrap'),
+            '~fa': path.resolve(__dirname, 'node_modules/@fortawesome/fontawesome-free/scss'),
         }
     },
 });

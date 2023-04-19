@@ -5,17 +5,9 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>{{ config('app.name', 'Laravel') }}</title>
 
-      <!-- Fonts -->
-      <link rel="preconnect" href="https://fonts.bunny.net">
-      <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" 
-      rel="stylesheet" />
-      
-      <!-- Font Awesome -->
-      <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
 
-      <!-- Boostrap Css -->
-      @vite(['resources/css/app.css'])
-
+      <!-- Boostrap Js -->
+      @vite(['resources/js/app.js'])
       <!-- Livewire Styles -->
       @livewireStyles
    </head>
@@ -151,8 +143,7 @@
       integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" 
       crossorigin="anonymous"></script>
 
-      <!-- Boostrap Js -->
-      @vite(['resources/js/app.js'])
+      
 
       <!-- Livewire Scripts -->
       @livewireScripts

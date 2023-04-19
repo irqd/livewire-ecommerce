@@ -17,7 +17,7 @@ class Register extends Component
 
 
     protected $rules = [
-        'username' => ['required', 'string', 'min:8', 'max:255', 'unique:users'],
+        'username' => ['required', 'string', 'min:6', 'max:255', 'unique:users'],
         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
         'password' => ['required', 'string', 'min:8', 
             'regex:/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/'],
