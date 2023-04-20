@@ -9,6 +9,6 @@ class Index extends Component
 {
     public function render()
     {
-        return view('livewire.main.landing.index')->extends('layouts.main');
+        return view('livewire.main.landing.index');
     }
 }

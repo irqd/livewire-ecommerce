@@ -1,3 +1,4 @@
+@section('content')
 <div class="container-fluid container-lg">
     <div class="pt-5">
         <h1 class="fw-bold fs-3 pt-2">
@@ -47,3 +48,4 @@
         </>
     </div>
 </div>
+@endsection

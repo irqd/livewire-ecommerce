@@ -1,29 +1,29 @@
 <?php
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Livewire\Auth\Login;
+
 use App\Http\Livewire\Auth\Register;
+use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Profile\Account;
 
+use App\Http\Livewire\Main\Cart\CartList;
+use App\Http\Livewire\Main\Landing\Index;
 use App\Http\Livewire\Admin\Brands\Brands;
 use App\Http\Livewire\Admin\Sliders\Sliders;
+use App\Http\Livewire\Main\Products\Product;
 use App\Http\Livewire\Admin\Brands\BrandsAdd;
 use App\Http\Livewire\Admin\Brands\BrandsEdit;
 use App\Http\Livewire\Admin\Products\Products;
 use App\Http\Livewire\Admin\Settings\Settings;
 use App\Http\Livewire\Admin\Sliders\SlidersAdd;
+use App\Http\Livewire\Main\Categories\Category;
 use App\Http\Livewire\Admin\Dashboard\Dashboard;
 use App\Http\Livewire\Admin\Sliders\SlidersEdit;
 use App\Http\Livewire\Admin\Products\ProductsAdd;
-use App\Http\Livewire\Admin\Products\ProductsEdit;
 use App\Http\Livewire\Admin\Categories\Categories;
+use App\Http\Livewire\Admin\Products\ProductsEdit;
 use App\Http\Livewire\Admin\Categories\CategoriesAdd;
 use App\Http\Livewire\Admin\Categories\CategoriesEdit;
-
-use App\Http\Livewire\Main\Landing\Index;
 use App\Http\Livewire\Main\Categories\Categories as MainCategories;
-use App\Http\Livewire\Main\Categories\Category;
-use App\Http\Livewire\Main\Products\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,8 +37,18 @@ use App\Http\Livewire\Main\Products\Product;
 */
 
 
+
+
+
 //Main Routes
 Route::get('/', Index::class)->name('index');
+
+Route::get('/logout', function () {
+    Auth::logout();
+
+    return redirect('/');
+});
+
 Route::get('/account', Account::class)->name('account')->middleware('auth');
 
 // Admin Routes
@@ -96,7 +106,12 @@ Route::prefix('main')->group(function () {
         Route::get('/{id}/{slug}', Category::class)->name('main.category'); //view selected category
     });
     Route::prefix('product')->group(function () {
-       // Route::get('/', MainCategories::class)->name('main.categories'); //view all categories
+        // Route::get('/', MainCategories::class)->name('main.categories'); //view all categories
         Route::get('/{id}/{slug}', Product::class)->name('main.product'); //view selected product
+    });
+    
+    
+    Route::prefix('cart')->group(function () {
+        Route::get('/', CartList::class)->name('main.cart'); //view all wishlist
     });
 });

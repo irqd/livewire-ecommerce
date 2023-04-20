@@ -1,3 +1,4 @@
+@section('content')
 <div>
   <section id='sliders'>
     <livewire:main.landing.contents.sliders />
@@ -45,3 +46,4 @@
   </section>
 </div>
 
+@endsection

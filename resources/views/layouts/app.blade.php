@@ -31,7 +31,10 @@
                </form>
                
                <div class="d-flex justify-content-end">
-                  <a href="#" class="link-dark btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Cart">
+                  <a 
+                  href="@auth {{ route('main.cart') }} @endauth
+                  @guest # @endguest"
+                  class="link-dark btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Cart">
                      <i class="fa-solid fa-cart-shopping fs-5"></i>
                      @auth 
                      <span class="position-absolute p-1 top-0 start-100 translate-middle badge 
@@ -44,14 +47,12 @@
                   </a>
 
                   @auth
-                  <div>
-                     <a class="link-dark btn" href="{{ route('account') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Account">
-                        <i class="fa-regular fa-user fs-5"></i>
-                     </a>
-                  </div>
-                  @endauth
-
-                  @auth
+                     <div>
+                        <a class="link-dark btn" href="{{ route('account') }}" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Account">
+                           <i class="fa-regular fa-user fs-5"></i>
+                        </a>
+                     </div>
+                  
                      @if(Auth::user()->role == 'admin')
                      <div>
                         <a class="btn btn-outline-dark" href="{{ route('admin.dashboard') }}">

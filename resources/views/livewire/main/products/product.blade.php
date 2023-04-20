@@ -1,3 +1,4 @@
+@section('content')
 <div class="container-md p-4 p-md-5">
    <h1 class="fw-bold fs-4 pb-3">
       <a href="{{ route('index') }}" class="link-dark breadcrumbs">Home</a> /
@@ -151,3 +152,5 @@
       </div>
    </div>
 </div>
+
+@endsection

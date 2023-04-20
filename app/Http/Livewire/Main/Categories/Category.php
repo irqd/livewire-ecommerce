@@ -56,6 +56,6 @@ class Category extends Component
 
         return view('livewire.main.categories.category', [
             'product_list' => $product_list->latest()->get()
-        ])->extends('layouts.main');
+        ]);
     }
 }

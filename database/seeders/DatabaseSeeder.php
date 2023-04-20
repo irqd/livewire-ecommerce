@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
         Brands::factory(500)->create();
         Products::factory(500)->create();
         ProductImages::factory(500)->create();
-        User::factory(500)->create();
+        //User::factory(500)->create();
         
         //Stocks::factory(500)->create();
         

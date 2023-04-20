@@ -41,7 +41,7 @@
                     </thead>
                     <tbody>
                         @foreach ($brands as $brand)
-                        <tr key="{{  $brand->id }}">
+                        <tr wire:key="{{  $brand->id }}">
                            
                             <th scope="row">{{ $brand->id }}</th>
                             <td>
@@ -65,7 +65,7 @@
                                 </div>
                             </td>
                             <td>
-                                <livewire:admin.brands.brands-delete :deleteBrand="$brand" key="{{  $brand->id }}"/>
+                                <livewire:admin.brands.brands-delete :deleteBrand="$brand" wire:key="{{  $brand->id }}" />
 
                                 <div class="d-flex justify-content-center gap-1">
                                     <a href="{{ route('admin.brands.edit', ['slug' => $brand->slug, 'id' => $brand->id ])}}" class="btn btn-outline-warning shadow-sm">

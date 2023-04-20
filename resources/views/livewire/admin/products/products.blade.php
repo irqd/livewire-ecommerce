@@ -50,7 +50,7 @@
                    </thead>
                    <tbody>
                     @foreach ($products as $product)
-                    <tr key="{{  $product->id }}">
+                    <tr wire:key="{{  $product->id }}">
                            
                         <th scope="row">{{ $product->id }}</th>
                         <td>
@@ -104,7 +104,7 @@
                             </div>
                         </td>
                         <td>
-                            <livewire:admin.products.products-delete :deleteProduct="$product" key="{{  $product->id }}"/>
+                            <livewire:admin.products.products-delete :deleteProduct="$product" wire:key="{{  $product->id }}"/>
 
                                 <div class="d-flex justify-content-center gap-1">
                                     <a href="{{ route('admin.products.edit', ['slug' => $product->slug, 'id' => $product->id ])}}" class="btn btn-outline-warning shadow-sm">

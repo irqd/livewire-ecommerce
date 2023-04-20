@@ -23,6 +23,6 @@ class Categories extends Component
 
         return view('livewire.main.categories.categories', [
             'categories' => $categories->latest()->take(10)->get()
-        ])->extends('layouts.main');
+        ]);
     }
 }

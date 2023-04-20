@@ -1,3 +1,4 @@
+@section('content')
 <section class="content" class="d-flex">
     <div class="sidebar bg-light border shadow-sm" id="side_nav" wire:ignore>
         <div class="px-2 pt-5 pt-md-1">
@@ -106,3 +107,4 @@
        </div>
     </div>
  </section>
+ @endsection
