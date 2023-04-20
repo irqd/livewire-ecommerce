@@ -16,7 +16,7 @@
         
     </div>
     
-    <div id="categoriesCarousel" class="carousel" data-bs-ride="carousel">
+    <div id="categoriesCarousel" class="carousel" data-interval="false">
        <div class="carousel-inner">
             @foreach($categories as $index => $category)
                 <div class="carousel-item @if($index == 0) active @endif">
