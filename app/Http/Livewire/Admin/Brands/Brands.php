@@ -16,16 +16,29 @@ class Brands extends Component
     protected $paginationTheme = 'bootstrap';
     protected $queryString = ['search'];
 
+
     public function render()
     {
         $brands = ModelsBrands::query();
+        
 
         if($this->search) 
         {
+            if (in_array(strtoupper($this->search), ['ACTIVE', 'INACTIVE'])) {
+                $status = strtoupper($this->search) == 'ACTIVE' ? true : false;
+            } else {
+                $status = null;
+            }
+          
+            
             $brands->where('name', 'like', "%{$this->search}%")
             ->orWhere('slug', 'like', "%{$this->search}%")
-            ->orWhere('status', 'like', "%{$this->search}%")
             ->orWhere('description', 'like', "%{$this->search}%");
+
+            if (!is_null($status)) {
+                $brands->orWhere('status', $status);
+            }
+
         }
 
         return view('livewire.admin.brands.brands',

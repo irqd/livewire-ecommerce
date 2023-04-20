@@ -41,12 +41,14 @@
                     </thead>
                     <tbody>
                         @foreach ($brands as $brand)
-                        <tr>
+                        <tr key="{{  $brand->id }}">
                            
                             <th scope="row">{{ $brand->id }}</th>
                             <td>
-                                @if ($brand->image)
-                                    <img src="{{ asset('storage/' . $brand->image) }}" alt="Category Image" class="image-fluid fixed-size-sm">
+                                @if (filter_var($brand->image, FILTER_VALIDATE_URL))
+                                    <img src="{{ $brand->image }}" alt="Brand Image" class="image-fluid fixed-size-sm">
+                                @elseif ($brand->image)
+                                    <img src="{{ asset('storage/' . $brand->image) }}" alt="Brand Image" class="image-fluid fixed-size-sm">
                                 @else
                                     <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid fixed-size-sm">  
                                 @endif
@@ -63,7 +65,7 @@
                                 </div>
                             </td>
                             <td>
-                                <livewire:admin.brands.brands-delete :deleteBrand="$brand" key="{{  now() }}"/>
+                                <livewire:admin.brands.brands-delete :deleteBrand="$brand" key="{{  $brand->id }}"/>
 
                                 <div class="d-flex justify-content-center gap-1">
                                     <a href="{{ route('admin.brands.edit', ['slug' => $brand->slug, 'id' => $brand->id ])}}" class="btn btn-outline-warning shadow-sm">

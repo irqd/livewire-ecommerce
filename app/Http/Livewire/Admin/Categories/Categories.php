@@ -31,10 +31,20 @@ class Categories extends Component
 
         if($this->search) 
         {
+            if (in_array(strtoupper($this->search), ['ACTIVE', 'INACTIVE'])) {
+                $status = strtoupper($this->search) == 'ACTIVE' ? true : false;
+            } else {
+                $status = null;
+            }
+
             $categories->where('name', 'like', "%{$this->search}%")
             ->orWhere('slug', 'like', "%{$this->search}%")
-            ->orWhere('description', 'like', "%{$this->search}%")
-            ->orWhere('status', 'like', "%{$this->search}%");;
+            ->orWhere('description', 'like', "%{$this->search}%");
+            
+            
+            if (!is_null($status)) {
+                $categories->orWhere('status', $status);
+            }
         }
 
         return view('livewire.admin.categories.categories', [

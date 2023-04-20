@@ -32,16 +32,32 @@ class Products extends Component
         $products = ProductModel::query();
         if($this->search) 
         {
-            $feature = strtoupper($this->search) == 'YES' ? 1 : 0;
-            $status = strtoupper($this->search) == 'ACTIVE' ? 1 : 0;
+
+            if (in_array(strtoupper($this->search), ['ACTIVE', 'INACTIVE'])) {
+                $status = strtoupper($this->search) == 'ACTIVE' ? true : false;
+            } else {
+                $status = null;
+            }
+            
+            if (in_array(strtoupper($this->search), ['YES', 'NO'])) {
+                $featured = strtoupper($this->search) == 'YES' ? true : false;
+            } else {
+                $featured = null;
+            }
+           
 
             $products->where('name', 'like', "%{$this->search}%")
             ->orWhere('slug', 'like', "%{$this->search}%")
             ->orWhere('description', 'like', "%{$this->search}%")
-            ->orWhere('status', 'like', "%{$status}%")
-            ->orWhere('featured', 'like', "%{$feature}%")
             ->orwhereRelation('category', 'name', 'like', "%{$this->search}%")
             ->orwhereRelation('brand', 'name', 'like', "%{$this->search}%");
+
+            if (!is_null($status)) {
+                $products->orWhere('status', $status);
+            }
+            if (!is_null($featured)) {
+                $products->orWhere('featured', $featured);
+            }
         }
        
         return view('livewire.admin.products.products', [
