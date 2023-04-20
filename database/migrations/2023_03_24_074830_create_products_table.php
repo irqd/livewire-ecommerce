@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->longText('description')->nullable();
-            $table->string('status')->default('1')->comment('0 for Inactive, 1 for Active');
-            $table->string('featured')->default('0')->comment('0 for No, 1 for Yes');
+            $table->boolean('status')->default(1)->comment('0 for Inactive, 1 for Active');
+            $table->boolean('featured')->default(0)->comment('0 for No, 1 for Yes');
             $table->string('meta_name');
             $table->string('meta_keyword');
             $table->mediumText('meta_description')->nullable();

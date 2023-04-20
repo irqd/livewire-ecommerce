@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->mediumText('meta_description')->nullable();
             
-            $table->string('status')->default('1')->comment('0 for Inactive, 1 for Active');
+            $table->boolean('status')->default(1)->comment('0 for Inactive, 1 for Active');
             
             $table->timestamps();
         });

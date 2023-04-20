@@ -42,7 +42,9 @@
                            
                             <th scope="row">{{ $category->id }}</th>
                             <td>
-                                @if ($category->image)
+                                @if (filter_var($category->image, FILTER_VALIDATE_URL))
+                                    <img src="{{ $category->image }}" alt="Category Image" class="image-fluid fixed-size-sm">
+                                @elseif ($category->image)
                                     <img src="{{ asset('storage/' . $category->image) }}" alt="Category Image" class="image-fluid fixed-size-sm">
                                 @else
                                     <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid fixed-size-sm">  
