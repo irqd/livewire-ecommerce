@@ -325,7 +325,11 @@
 
                                 @foreach($images as $index => $image)
                                     <div class="col-md-3 card shadow-sm bg-light text-center">
+                                        @if (filter_var($category->image, FILTER_VALIDATE_URL))
+                                        <img src="{{ $image['filename'] }}" class="pt-3 img-fluid"/>
+                                        @else
                                         <img src="{{ asset('storage/'.$image['filename']) }}" class="pt-3 img-fluid"/>
+                                        @endif
                                         <div class="py-2 px-auto">
                                             <button class="btn btn-danger btn-sm shadow-sm" wire:click.prevent="removeImage({{ $index }})">
                                                 <i class="fa-solid fa-trash"></i>

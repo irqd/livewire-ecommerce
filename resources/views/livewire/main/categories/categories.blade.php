@@ -31,7 +31,11 @@
                     <div class="card rounded shadow-sm">
                         <a href="{{ route('main.category', ['slug' => $category->slug, 'id' => $category->id ])}}">
                             <div class="img-wrapper-category rounded" id="category_image">
+                                @if (filter_var($category->image, FILTER_VALIDATE_URL))
+                                <img src="{{  $category->image }}" alt="Category  {{  $category->name }}">
+                                @else
                                 <img src="{{  asset('storage/'.$category->image )}}" alt="Category  {{  $category->name }}">
+                                @endif
                             </div>
     
                             <div class="card-img-overlay">
