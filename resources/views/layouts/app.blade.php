@@ -38,7 +38,7 @@
                      <i class="fa-solid fa-cart-shopping fs-5"></i>
                      @auth 
                      <span class="position-absolute p-1 top-0 start-100 translate-middle badge 
-                     rounded-pill bg-danger">10 
+                     rounded-pill bg-danger">{{ Auth::User()->wishlist->count() }} 
                         <span class="visually-hidden">
                            on cart
                         </span>

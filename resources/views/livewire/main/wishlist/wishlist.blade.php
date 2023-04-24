@@ -5,10 +5,15 @@
     <div class="card-body">
         <ul class="list-group">
             @foreach ($wishlist as $item)
+
+            @php
+                    $product = \App\Models\Products::where(['id' => $item->products_id])->first()
+            @endphp
+            
             <li class="list-group-item d-flex justify-content-between align-items-center">
-                {{ $item->name }}
-                <button class="btn btn-outline-danger btn-sm" wire:click="removeFromWishlist({{ $item->id }})">
-                    <i class="bi bi-trash"></i>
+                {{ $product->name }}
+                <button class="btn btn-outline-danger btn-sm" wire:click="removeFromWishlist({{ $product->id }})">
+                    <i class="fa-solid fa-trash"></i>
                 </button>
             </li>
             @endforeach

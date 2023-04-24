@@ -17,9 +17,4 @@ class CartList extends Model
         return $this->belongsTo(User::class);
     }
 
-    //! TODO
-    public function products()
-    {
-        return $this->hasMany(Products::class);
-    }
 }
