@@ -47,11 +47,7 @@
                                     <p>{{ $slider->description }}</p>
                                 </td>
                                 <td>
-                                    @if ($slider->image)
-                                        <img src="{{ asset('storage/' . $slider->image) }}" alt="Category Image" class="image-fluid" width="150">
-                                    @else
-                                        <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid" width="150">  
-                                    @endif
+                                    <livewire:components.image-view image='{{ $slider->image }}' alt='{{ $slider->title }} Image' className="image-fluid" width="150" wire:key='{{ $slider->id }}'>
                                 </td>
                                 <td>
                                     <div class="@if($slider->status == '1') bg-success @else bg-danger @endif rounded px-2 py-1 text-center text-white">

@@ -45,13 +45,7 @@
                            
                             <th scope="row">{{ $brand->id }}</th>
                             <td>
-                                @if (filter_var($brand->image, FILTER_VALIDATE_URL))
-                                    <img src="{{ $brand->image }}" alt="Brand Image" class="image-fluid fixed-size-sm">
-                                @elseif ($brand->image)
-                                    <img src="{{ asset('storage/' . $brand->image) }}" alt="Brand Image" class="image-fluid fixed-size-sm">
-                                @else
-                                    <img src="{{ asset('images/no-photo.svg')}}" alt="No Image" class="image-fluid fixed-size-sm">  
-                                @endif
+                                <livewire:components.image-view image="{{ $brand->image }}" alt="{{ $brand->name }} Image" wire:key='{{ $brand->id }}'/>
                             </td>
                             <td>{{ $brand->name }}</td>
                             <td>{{ $brand->slug }}</td>

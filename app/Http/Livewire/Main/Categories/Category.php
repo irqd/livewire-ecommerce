@@ -54,6 +54,7 @@ class Category extends Component
                 });
             })->where('status', 1)->has('stocks');
 
+
         return view('livewire.main.categories.category', [
             'product_list' => $product_list->latest()->get()
         ]);
