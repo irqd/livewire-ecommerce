@@ -45,14 +45,4 @@ class Products extends Model
         return $this->hasMany(Stocks::class);
     }
 
-    //!to do
-    public function wishlist()
-    {
-        return $this->belongsTo(Wishlist::class);
-    }
-
-    public function cartList()
-    {
-        return $this->belongsTo(CartList::class);
-    }
 }

@@ -6,24 +6,24 @@
         <h2 class="text-2xl font-bold mb-4">Cart</h2>
 
         <ul class="divide-y divide-gray-200">
-            @forelse($cartlist as $index => $item)
-            @php
-                    $product = \App\Models\Products::where(['id' => $item->products_id])->first()
-            @endphp
+            @forelse($cart_list as $index => $item)
+        
             <li class="py-4 flex">
                 <div class="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
-                    <img src="{{ $product->images->first()->filename }}" alt="{{ $product->name }}"
+                    <img src="" alt="{{ $item->product->name }}"
                         class="w-full h-full object-center object-cover">
                 </div>
 
                 <div class="ml-4 flex-1 flex flex-col">
                     <div>
                         <div class="flex justify-between">
-                            <h3 class="text-sm font-medium text-gray-900">{{ $product->name }}</h3>
-                            <p class="ml-4 text-sm font-medium text-gray-900">{{ $product->selling_price }}</p>
+                            <h3 class="text-sm font-medium text-gray-900">{{ $item->product->name }}</h3>
+                            <p class="ml-4 text-sm font-medium text-gray-900">{{ $item->product->selling_price }}</p>
                         </div>
-                        <p class="mt-1 text-sm text-gray-500">{{ $product->description }}</p>
+                        <p class="mt-1 text-sm text-gray-500">{{ $item->product->description }}</p>
                     </div>
+
+                    <p class="h1">{{ $item->pivot->quantity }}</p>
 
                     <div class="flex-1 flex items-end justify-between text-sm">
                         <button wire:click="removeItem({{ $index }})"

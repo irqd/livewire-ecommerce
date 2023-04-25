@@ -4,13 +4,14 @@ namespace App\Http\Livewire\Main\Cart;
 
 use Livewire\Component;
 use App\Models\Products;
+use App\Models\Stocks;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 
 class CartList extends Component
 {
 
-    public $cartlist;
+    public $cart_list;
     public $subtotal;
     public $tax;
     public $total;
@@ -21,13 +22,14 @@ class CartList extends Component
 
     public function mount()
     {
-        $this->cartlist = Auth::User()->cartList;
+        $cart = Auth::User()->shoppingCart()->first();
+        $this->cart_list = $cart->stocks;
 
     }
 
     public function removeFromCart($itemId)
     {
-        auth()->user()->cartlist()->where('id', $itemId)->delete();
+        auth()->user()->shoppingCart()->where('id', $itemId)->delete();
 
         $this->cart = $this->cart->filter(function ($item) use ($itemId) {
             return $item->id != $itemId;
@@ -38,7 +40,7 @@ class CartList extends Component
 
     public function clearCart()
     {
-        auth()->user()->cartlist()->delete();
+        auth()->user()->shoppingCart()->delete();
 
         $this->cartlist = collect([]);
 

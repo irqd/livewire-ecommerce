@@ -11,12 +11,7 @@ class Stocks extends Model
     use HasFactory;
     protected $table = 'stocks';
 
-    public $status;
-
-    public function __construct()
-    {
-        $this->status = '1'; // Set default value of status property to 1
-    }
+    public $status = '1'; // Set default value of status property to 1
 
     protected $fillable = [
         'name',
@@ -28,6 +23,12 @@ class Stocks extends Model
 
     public function product()
     {
-        return $this->belongsTo(Products::class);
+        return $this->belongsTo(Products::class, 'products_id', 'id');
+    }
+
+    public function shoppingCarts()
+    {
+        return $this->belongsToMany(ShoppingCart::class, 'shopping_cart_stock')
+                    ->withPivot('quantity');
     }
 }
