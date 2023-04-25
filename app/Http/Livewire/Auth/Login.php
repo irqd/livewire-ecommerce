@@ -58,7 +58,6 @@ class Login extends Component
             }
         }
 
-        
         RateLimiter::hit($throttleKey,$this->decaySeconds);
         $attemptsLeft = RateLimiter::retriesLeft($throttleKey, $this->maxAttempts);
         session()->flash('attemptsLeft', $attemptsLeft);

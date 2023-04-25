@@ -62,7 +62,7 @@
                                     @if (filter_var($image->filename, FILTER_VALIDATE_URL))
                                     <img src="{{ $image->filename }}" alt="Product Image" class="image-fluid fixed-size-sm" key="{{ $image->id }}">
                                     @else
-                                    <img src="{{ asset('storage/' . $image->filename) }}" alt="Product Image" class="image-fluid fixed-size-sm" key="{{ $image->id }}>
+                                    <img src="{{ asset('storage/' . $image->filename) }}" alt="Product Image" class="image-fluid fixed-size-sm" key="{{ $image->id }}">
                                     @endif
                                 </div>
                                 @endforeach
