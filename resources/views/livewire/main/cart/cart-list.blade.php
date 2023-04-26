@@ -1,5 +1,6 @@
 @section('content')
 <div class="container">
+  <livewire:main.wishlist.wishlist wire:key="{{ Auth::User()->id }}" />
 
 
     {{-- <div class="col-8">
