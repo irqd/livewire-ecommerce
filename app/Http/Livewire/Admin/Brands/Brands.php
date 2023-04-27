@@ -53,6 +53,7 @@ class Brands extends Component
         if ($property == 'search')
         {
             $this->resetPage();
+
         }
     }
 

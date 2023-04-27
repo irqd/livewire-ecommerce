@@ -56,10 +56,17 @@
             <div class="col-md-8">
               <div class="card mb-4">
                 <div class="card-header py-3">
-                  <h5 class="mb-0">Cart - {{ Auth::User()->shoppingCart->first()->stocks->count() }} items</h5>
+                  <h5 class="mb-0">Cart - 
+                    
+                    @if(optional(Auth::user()->shoppingCart->first())->stocks)
+                    {{ Auth::user()->shoppingCart->first()->stocks->count() }}
+                    @else
+                    0
+                    @endif items</h5>
                 </div>
                 <div class="card-body">
                   <!-- Single item -->
+                  @if ($cart_list)
                   @forelse($cart_list as $index => $item)
                   <div class="row">
                     <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
@@ -131,6 +138,7 @@
                   @empty
                   <p>No items in cart</p>
                   @endforelse
+                  @endif
                   <!-- Single item -->
       
                  
@@ -149,11 +157,11 @@
                     <li
                       class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                       Total Selling Price
-                      <span>{{ number_format($cart_list->sum('selling_price'), 2) }}</span>
+                      <span>{{ number_format(optional($cart_list)->sum('selling_price'), 2) }}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                       Total Original Price
-                      <span>{{ number_format($cart_list->sum('original_price'), 2) }}</span>
+                      <span>{{ number_format(optional($cart_list)->sum('original_price'), 2) }}</span>
                     </li>
                     <li
                       class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">

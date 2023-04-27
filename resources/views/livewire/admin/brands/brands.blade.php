@@ -40,6 +40,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                       
                         @foreach ($brands as $brand)
                         <tr wire:key="{{  $brand->id }}">
                            

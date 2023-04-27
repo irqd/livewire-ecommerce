@@ -59,9 +59,12 @@ const multipleItemCarousel = document.querySelector('#categoriesCarousel')
 const showSeeAll = document.querySelector('#showSeeAll')
 
 if(window.matchMedia("(min-width:576px)").matches){
-  const carousel = new bootstrap.Carousel(multipleItemCarousel, {
-    interval: false,
-  });
+  if (multipleItemCarousel){
+    const carousel = new bootstrap.Carousel(multipleItemCarousel, {
+      interval: false,
+    });
+  
+  
 
   var carouselWidth = $('#categories .carousel-inner')[0].scrollWidth;
   var cardWidth = $('#categories .carousel-item').width();
@@ -81,6 +84,7 @@ if(window.matchMedia("(min-width:576px)").matches){
       $('#categories .carousel-inner').animate({scrollLeft: scrollPosition}, 600);
     }
   });
+}
 } else {
   $(multipleItemCarousel).addClass('slide');
 }

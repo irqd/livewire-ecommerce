@@ -22,8 +22,11 @@ class CartList extends Component
 
     public function mount()
     {
-        $cart = Auth::User()->shoppingCart()->first();
-        $this->cart_list = $cart->stocks;
+        $cart = Auth::User()->shoppingCart();
+        if ($cart and $cart->first() and $cart->first()->stocks){
+            $this->cart_list = $cart->first()->stocks;
+        }
+       
 
     }
 

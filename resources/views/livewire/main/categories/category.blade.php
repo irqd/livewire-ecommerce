@@ -1,6 +1,6 @@
 @section('content')
 <section class="content" class="d-flex">
-    <div class="sidebar bg-light border shadow-sm" id="side_nav" wire:ignore>
+    <div class="sidebar bg-light border shadow-sm" id="side_nav">
         <div class="px-2 pt-5 pt-md-1">
             <h1 class="px-2 fw-bold fs-3">
                 Filters
@@ -15,10 +15,10 @@
                 <div class="card-body">
                 <div class="card-text">
                     @foreach($category->brands as $brand)
-                        <div class="form-check pb-1">
-                            <input class="form-check-input" type="checkbox" value="{{ $brand->id }}" id="brand_in_category" 
-                            wire:model.debounce.500ms="brands">
-                            <label class="form-check-label fw-bold" for="brand_in_category">
+                        <div class="form-check pb-1" wire:key='{{ $brand->id }}'>
+                            <input class="form-check-input"  type="checkbox" value="{{ $brand->id }}" id="brand_in_category_{{ $brand->id }}" 
+                            wire:model="brands">
+                            <label class="form-check-label fw-bold" for="brand_in_category_{{ $brand->id }}">
                             {{ $brand->name }}
                             </label>
                         </div>
@@ -36,8 +36,8 @@
                 <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <div class="">
-                        <label for="min_price" class="form-label fw-bold mb-0">Min</label>
-                        <input type="number" id="min_price" wire:model.debounce.500ms="min_price" class="form-control">
+                        <label for="minPrice" class="form-label fw-bold mb-0">Min</label>
+                        <input type="number" id="minPrice" wire:model="minPrice" class="form-control">
                     </div>
                     <div class="px-2 pt-4">
                         <span>
@@ -45,8 +45,8 @@
                         </span>
                     </div>
                     <div class="">
-                        <label for="max_price" class="form-label fw-bold mb-0">Max</label>
-                        <input type="number" id="max_price" wire:model.debounce.500ms="max_price" class="form-control">
+                        <label for="maxPrice" class="form-label fw-bold mb-0">Max</label>
+                        <input type="number" id="maxPrice" wire:model="maxPrice" class="form-control">
                     </div>
                 </div>
                 </div>
@@ -77,14 +77,18 @@
             @endif
 
             @forelse($product_list as $product)
-            <div class="col-6 col-md-4 col-lg-2 p-1">
+            <div class="col-6 col-md-4 col-lg-2 p-1" wire:key='{{ $product->id }}'>
                 <a id="product" href="{{ route('main.product', ['slug' => $product->slug, 'id' => $product->id ])}}" class="text-decoration-none">
                     <div class="card bg-body shadow-sm">
                         <img src="{{ asset('storage/'.$product->images->first()->filename ) }}" class="card-img-top" alt="{{ $product->name }} image" height="160px">
+                        
                         <div class="card-body p-2 m-0">
                             <div class="card-text p-0 m-0 mb-1">
+                                <span class=" p-1 top-0 start-100  badge 
+                                rounded-pill bg-danger">{{ $product->brand->name }} </span>
                             <h6 class="fw-bold link-dark pt-1">
-                                {{  $product->name }}
+                                {{  $product->name }} 
+                           
                             </h6>
                             </div>
                             <h6 class="text-warning m-0 p-0">
@@ -103,6 +107,7 @@
                 </a>
             </div>
             @endforeach
+            {{ $product_list->links()}}
           </div>
        </div>
     </div>

@@ -37,8 +37,12 @@
                   class="link-dark btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Cart">
                      <i class="fa-solid fa-cart-shopping fs-5"></i>
                      @auth 
+                     @if(optional(Auth::user()->shoppingCart->first())->stocks)
                      <span class="position-absolute p-1 top-0 start-100 translate-middle badge 
-                     rounded-pill bg-danger">{{ Auth::User()->shoppingCart->first()->stocks->count() }} 
+                     rounded-pill bg-danger"> 
+                     {{ Auth::user()->shoppingCart->first()->stocks->count() }}
+                     @endif
+                  
                         <span class="visually-hidden">
                            on cart
                         </span>
