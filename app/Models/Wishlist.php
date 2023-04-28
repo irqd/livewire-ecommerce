@@ -16,4 +16,11 @@ class Wishlist extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function stocks()
+    {
+         return $this->belongsToMany(Stocks::class, 'shopping_cart_stock')
+                        ->withPivot('quantity');
+
+    }
 }

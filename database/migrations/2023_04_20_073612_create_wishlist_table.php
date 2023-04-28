@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('wishlist', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('products_id')->references('id')->on('products')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('stocks_id')->references('id')->on('stocks')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreignId('products_id')->references('id')->on('products')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            // $table->foreignId('stocks_id')->references('id')->on('stocks')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

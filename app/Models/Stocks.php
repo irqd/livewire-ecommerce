@@ -26,9 +26,15 @@ class Stocks extends Model
         return $this->belongsTo(Products::class, 'products_id', 'id');
     }
 
-    public function shoppingCarts()
+    public function shoppingCart()
     {
         return $this->belongsToMany(ShoppingCart::class, 'shopping_cart_stock')
+                    ->withPivot('quantity');
+    }
+
+    public function wishList()
+    {
+        return $this->belongsToMany(ShoppingCart::class, 'wishlist_stock')
                     ->withPivot('quantity');
     }
 }

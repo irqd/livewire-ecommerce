@@ -3,6 +3,7 @@
 use App\Models\Products;
 use App\Models\Stocks;
 use App\Models\ShoppingCart;
+use App\Models\Wishlist;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -28,6 +29,15 @@ return new class extends Migration
         Schema::create('shopping_cart_stock', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(ShoppingCart::class)->onDelete('cascade');
+            $table->foreignIdFor(Stocks::class)->onDelete('cascade');
+            $table->integer('quantity')->default(0);
+
+            $table->timestamps();
+        });
+
+        Schema::create('wishlist_stock', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(Wishlist::class)->onDelete('cascade');
             $table->foreignIdFor(Stocks::class)->onDelete('cascade');
             $table->integer('quantity')->default(0);
 

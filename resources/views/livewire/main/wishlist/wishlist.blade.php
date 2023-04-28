@@ -25,6 +25,7 @@
 </div> --}}
 
 <!-- Wishlist Page Header -->
+<div class="container">
 <h1 class="text-center">Wishlist</h1>
 
 <!-- Wishlist Search Bar -->
@@ -42,17 +43,20 @@
 <!-- Wishlist Items Container -->
 <div class="container">
   <div class="row">
+    @foreach ($wishlist as $item)
     <!-- Wishlist Item Card -->
     <div class="col-md-4">
       <div class="card">
+        <livewire:components.image-view image='something something'>
         <img src="item-image.jpg" class="card-img-top" alt="Item Image">
         <div class="card-body">
-          <h5 class="card-title">Item Name</h5>
-          <p class="card-text">Item Price</p>
+          <h5 class="card-title">something</h5>
+          <p class="card-text">somethingsomethingsomethingsomething</p>
           <button class="btn btn-danger">Remove Item</button>
         </div>
       </div>
     </div>
+    @endforeach
   </div>
 </div>
 
@@ -63,4 +67,6 @@
       <button class="btn btn-primary btn-lg btn-block mt-5">Clear Wishlist</button>
     </div>
   </div>
+</div>
+
 </div>
