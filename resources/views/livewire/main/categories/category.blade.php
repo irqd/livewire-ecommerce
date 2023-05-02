@@ -91,17 +91,22 @@
                            
                             </h6>
                             </div>
+                            @if ($product->stocks->first())
                             <h6 class="text-warning m-0 p-0">
                             {{-- <span class="text-dark fs-5">P {{ $product->stocks[0]->selling_price }} --}}
                             <span class="text-dark fs-5">P {{ $product->stocks->first()->selling_price }}
                             </span>
                             </h6>
+                            @endif
+
+                            @if ($product->stocks->first())
                             <div class="d-flex justify-content-between">
                             <small class="text-danger">
                             <span class="text-dark">P</span>
                             <s>{{ $product->stocks->first()->original_price }}</s>
                             </small>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </a>
