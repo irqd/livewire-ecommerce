@@ -5,6 +5,8 @@
             <h1 class="px-2 fw-bold fs-3">
                 Filters
             </h1>
+
+            <input type="text" wire:model="testtest">
         </div>
 
         <div class="px-2">
@@ -17,7 +19,7 @@
                     @foreach($category->brands as $brand)
                         <div class="form-check pb-1" wire:key='{{ $brand->id }}'>
                             <input class="form-check-input"  type="checkbox" value="{{ $brand->id }}" id="brand_in_category_{{ $brand->id }}" 
-                            wire:model="brands">
+                            wire:model="brands.{{ $brand->id }}">
                             <label class="form-check-label fw-bold" for="brand_in_category_{{ $brand->id }}">
                             {{ $brand->name }}
                             </label>
@@ -65,10 +67,11 @@
             <h1>
                     <a href="{{ route('index') }}" class="link-dark breadcrumbs">Home</a> /
                     <a href="{{ route('main.categories') }}" class="link-dark breadcrumbs">Categories</a> /
-                    <a href="" class="breadcrumbs link-secondary">{{ $category->name }}</a>
+                    <a href="#" class="breadcrumbs link-secondary">{{ $category->name }}</a>
             </h1>
           <div class="row px-3 pt-3" >
-            @if($product_list->count() == 0)
+            @if ($product_list)
+            @if($product_list->count() == 0) 
                 <div class="col-12">
                     <div class="alert alert-danger">
                         <span class="fw-bold">No products found...</span>
@@ -112,7 +115,8 @@
                 </a>
             </div>
             @endforeach
-            {{ $product_list->links()}}
+            {{-- {{ $product_list->links()}} --}}
+            @endif
           </div>
        </div>
     </div>

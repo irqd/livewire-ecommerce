@@ -21,6 +21,7 @@ use App\Http\Livewire\Admin\Sliders\SlidersEdit;
 use App\Http\Livewire\Admin\Products\ProductsAdd;
 use App\Http\Livewire\Admin\Categories\Categories;
 use App\Http\Livewire\Admin\Products\ProductsEdit;
+use App\Http\Livewire\Main\Categories\Cattegorytest;
 use App\Http\Livewire\Admin\Categories\CategoriesAdd;
 use App\Http\Livewire\Admin\Categories\CategoriesEdit;
 use App\Http\Livewire\Main\Categories\Categories as MainCategories;
@@ -40,7 +41,7 @@ use App\Http\Livewire\Main\Categories\Categories as MainCategories;
 
 
 
-//Main Routes
+//*Main Routes
 Route::get('/', Index::class)->name('index');
 
 Route::get('/logout', function () {
@@ -51,7 +52,7 @@ Route::get('/logout', function () {
 
 Route::get('/account', Account::class)->name('account')->middleware('auth');
 
-// Admin Routes
+//* Admin Routes
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
    
     //Dashboard Routes
@@ -99,11 +100,11 @@ Route::prefix('auth')->middleware(['guest'])->group(function () {
     Route::get('/register', Register::class)->name('register');
 });
 
-//? Contents
+//* Contents
 Route::prefix('main')->group(function () {
     Route::prefix('categories')->group(function () {
         Route::get('/', MainCategories::class)->name('main.categories'); //view all categories
-        Route::get('/{id}/{slug}', Category::class)->name('main.category'); //view selected category
+        Route::get('/{id}/{slug}', Cattegorytest::class)->name('main.category'); //view selected category
     });
     Route::prefix('product')->group(function () {
         // Route::get('/', MainCategories::class)->name('main.categories'); //view all categories
