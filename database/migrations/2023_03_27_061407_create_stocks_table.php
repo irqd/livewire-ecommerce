@@ -26,23 +26,9 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('shopping_cart_stock', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(ShoppingCart::class)->onDelete('cascade');
-            $table->foreignIdFor(Stocks::class)->onDelete('cascade');
-            $table->integer('quantity')->default(0);
+       
 
-            $table->timestamps();
-        });
-
-        Schema::create('wishlist_stock', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Wishlist::class)->onDelete('cascade');
-            $table->foreignIdFor(Stocks::class)->onDelete('cascade');
-            $table->integer('quantity')->default(0);
-
-            $table->timestamps();
-        });
+       
     }
 
     /**
@@ -51,6 +37,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('stocks');
-        Schema::dropIfExists('shoppingcart_stock');
     }
 };

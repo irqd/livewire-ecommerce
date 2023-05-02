@@ -18,6 +18,15 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+
+        Schema::create('wishlist_stock', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('wishlist_id')->references('id')->on('wishlist')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('stocks_id')->references('id')->on('stocks')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('quantity')->default(0);
+
+            $table->timestamps();
+        });
     }
 
     /**
@@ -26,5 +35,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('wishlist');
+        Schema::dropIfExists('wishlist_stock');
     }
 };

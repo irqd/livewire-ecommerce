@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <title>@yield('title', config('app.name', 'Laravel'))</title>
+    <meta name="keywords" content="@yield('meta_keywords','')">
+    <meta name="description" content="@yield('meta_description','')">
+    <link rel="canonical" href="{{url()->current()}}"/>
 
     @vite(['resources/js/app.js'])
 
@@ -44,11 +48,11 @@
                         data-bs-placement="bottom" data-bs-title="Cart">
                         <i class="fa-solid fa-cart-shopping fs-5"></i>
                         @auth
-                            @if (optional(Auth::user()->shoppingCart->first())->stocks)
+                            @if (optional(Auth::user()->shoppingCart)->stocks)
                                 <span
                                     class="position-absolute p-1 top-0 start-100 translate-middle badge 
                                        rounded-pill bg-danger">
-                                    {{ Auth::user()->shoppingCart->first()->stocks->count() }}
+                                    {{ Auth::user()->shoppingCart->stocks->count() }}
                             @endif
 
                             <span class="visually-hidden">

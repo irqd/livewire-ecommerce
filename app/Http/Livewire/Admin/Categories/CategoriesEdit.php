@@ -87,6 +87,9 @@ class CategoriesEdit extends Component
 
     public function updated($property)
     {
+        if ($property == 'name'){
+            is_null($this->name) ? reset($this->slug) : $this->slug = Str::slug($this->name);
+        }
         $this->validateOnly($property);
     }
 }

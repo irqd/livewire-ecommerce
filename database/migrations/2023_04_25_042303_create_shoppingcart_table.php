@@ -17,6 +17,15 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
+
+        Schema::create('shopping_cart_stock', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('shopping_cart_id')->references('id')->on('shopping_cart')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('stocks_id')->references('id')->on('stocks')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('quantity')->default(0);
+
+            $table->timestamps();
+        });
     }
 
     /**
@@ -25,5 +34,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('shopping_cart');
+        Schema::dropIfExists('shopping_cart_stock');
     }
 };

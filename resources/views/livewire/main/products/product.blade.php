@@ -1,3 +1,7 @@
+@section('title', $product->meta_name)
+@section('meta_keywords', $product->meta_keywords)
+@section('meta_description', $product->meta_description)
+
 @section('content')
 <div class="container-md p-4 p-md-5">
    <h1 class="fw-bold fs-4 pb-3">

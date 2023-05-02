@@ -7,6 +7,7 @@ use App\Models\Stocks;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Products;
+use Illuminate\Support\Str;
 use App\Models\ProductImages;
 use Livewire\WithFileUploads;
 
@@ -158,6 +159,9 @@ class ProductsAdd extends Component
 
     public function updated($property)
     {
+        if ($property == 'name'){
+            is_null($this->name) ? reset($this->slug) : $this->slug = Str::slug($this->name);
+        }
         $this->validateOnly($property);        
     }
 
