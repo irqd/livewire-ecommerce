@@ -43,6 +43,7 @@
 <!-- Wishlist Items Container -->
 <div class="container">
   <div class="row">
+    @if ($wishlist)
     @foreach ($wishlist as $item)
     <!-- Wishlist Item Card -->
     <div class="col-md-4">
@@ -57,6 +58,9 @@
       </div>
     </div>
     @endforeach
+    @else
+     <div>no items</div>
+    @endif
   </div>
 </div>
 

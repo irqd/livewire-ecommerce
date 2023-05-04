@@ -57,7 +57,7 @@
                 <div class="card-header py-3">
                   <h5 class="mb-0">Cart - 
                     
-                    @if(optional(Auth::user()->shoppingCart->first())->stocks)
+                    @if(optional(Auth::user()->shoppingCart)->stocks)
                     {{ Auth::user()->shoppingCart->first()->stocks->count() }}
                     @else
                     0

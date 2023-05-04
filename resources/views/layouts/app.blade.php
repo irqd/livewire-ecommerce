@@ -67,8 +67,10 @@
                         <div class="btn-group dropdown">
                             <a class="nav-link dropdown-toggle d-flex align-items-center"
                                 id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
-                                    height="24" alt="Portrait of a Woman" loading="lazy" />
+                                {{-- <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
+                                    height="24" alt="Portrait of a Woman" loading="lazy" /> --}}
+
+                                <livewire:components.image-view image='{{ Auth::user()->image }}' className='rounded-circle' height="24" alt="Portrait of a Woman" loading="lazy" isProfile='true'>
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">

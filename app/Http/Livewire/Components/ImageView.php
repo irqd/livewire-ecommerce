@@ -7,12 +7,16 @@ use Livewire\Component;
 class ImageView extends Component
 {
 
-    public $image, $alt, $className, $style, $width, $height, $src;
+    public $image, $alt, $className, $style, $width, $height, $src, $loading, $isProfile = false;
 
     public function mount()
     {
         if (!$this->className) {
             $this->className = 'image-fluid fixed-size-sm';
+        }
+
+        if (!$this->loading){
+            $this->loading = 'lazy';
         }
 
         

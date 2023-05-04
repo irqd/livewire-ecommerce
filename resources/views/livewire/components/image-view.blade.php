@@ -1,3 +1,4 @@
+@if (!$isProfile and $this->image)
 <img src="{{ $src }}" @if ($alt) alt="{{ $alt }}" @endif
     @class([$className => $className]) @if ($style)
 @style([$style => $style])
@@ -11,5 +12,10 @@
     height="{{ $height }}"
 @endif
 
-loading="lazy"
+@if ($loading)
+loading="{{ $loading }}"
+@endif
 >
+@else
+<i class="fa-regular fa-user fs-5"></i>
+@endif
