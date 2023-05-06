@@ -83,7 +83,7 @@
                       <!-- Data -->
                       <p><strong>{{ $item->product->name }}</strong></p>
                       <p>Variant: {{ $item->name }}</p>
-                      <p>hindi ko alam ano ilalagay dito</p>
+                      <p class="text-truncate">{{ $item->product->description }}</p>
                       <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-bs-toggle="tooltip"
                         title="Remove item">
                         <i class="fas fa-trash"></i>
@@ -184,10 +184,10 @@
         </div>
 
 
-        <div class="container">
+        {{-- <div class="container">
 
           <livewire:main.wishlist.wishlist wire:key="{{ Auth::User()->id }}" />
-         </div>
+         </div> --}}
       </section>
 
       
